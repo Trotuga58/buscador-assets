@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { KEY_HELP } from '../logic.ts';
+import { ConnectClaude } from './ConnectClaude.tsx';
 
-interface Props { status: Record<string, boolean>; onSave: (keys: Record<string, string>) => Promise<void> }
+interface Props { status: Record<string, boolean>; onSave: (keys: Record<string, string>) => Promise<void>; connectCommand?: string | null }
 
-export function SettingsPanel({ status, onSave }: Props) {
+export function SettingsPanel({ status, onSave, connectCommand = null }: Props) {
   const [values, setValues] = useState<Record<string, string>>({});
   const [msg, setMsg] = useState<string | null>(null);
 
@@ -15,6 +16,7 @@ export function SettingsPanel({ status, onSave }: Props) {
   }
 
   return (
+    <>
     <section aria-label="Ajustes">
       <h2>Claves de las fuentes</h2>
       <p>Son gratuitas. Las que dejes vacías no se cambian. Sin clave, esa fuente se omite.</p>
@@ -33,5 +35,7 @@ export function SettingsPanel({ status, onSave }: Props) {
       </form>
       {msg && <p role="status">{msg}</p>}
     </section>
+    <ConnectClaude command={connectCommand} />
+    </>
   );
 }

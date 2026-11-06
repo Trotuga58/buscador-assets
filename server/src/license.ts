@@ -30,3 +30,7 @@ export function buildAttribution(a: {
 }): string {
   return `"${a.title}" de ${a.author} (${a.sourceName}, ${a.sourceUrl}), licencia ${LABEL[a.license]}.`;
 }
+
+const LICENSE_TEXT = { cc0: 'CC0', 'cc-by': 'CC BY', ofl: 'OFL', 'apache-2.0': 'Apache 2.0' } as const;
+/** Nombre legible de la licencia para mostrar en mensajes. */
+export function licenseText(l: keyof typeof LICENSE_TEXT): string { return LICENSE_TEXT[l] ?? String(l); }

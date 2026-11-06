@@ -42,3 +42,8 @@ test('normalizeLicense: URLs de licencia (Freesound)', () => {
     assert.equal(normalizeLicense(u), null, u);
   }
 });
+
+import { licenseText } from './license.ts';
+test('licenseText da el nombre legible', () => {
+  assert.deepEqual((['cc0', 'cc-by', 'ofl', 'apache-2.0'] as const).map(licenseText), ['CC0', 'CC BY', 'OFL', 'Apache 2.0']);
+});

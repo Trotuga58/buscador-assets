@@ -55,3 +55,18 @@ muestra errores o cero resultados, hay que ajustar ese adaptador y su archivo de
 - Google Fonts no indica la licencia de cada fuente por API: las marcamos como OFL (Roboto, como Apache 2.0). Mira la página de la fuente.
 - La lista curada (`server/data/curated.json`) se escribió de memoria: comprueba la licencia en la página del pack antes de usarlo.
 - Esto es una ayuda, no asesoría legal.
+
+
+## Conectar con Claude (Claude Desktop o Claude Code)
+
+El `.exe` también funciona como conector: Claude puede buscar assets y **descargarlos** a tu ordenador (por ejemplo para importarlos en Blender con su propio conector).
+
+1. Abre la app → **Ajustes** → "Conectar con Claude" → **Copiar configuración**.
+2. Claude Desktop: Ajustes → Desarrollador → Editar configuración, pega el bloque en `claude_desktop_config.json` y reinicia Claude.
+   Claude Code: `claude mcp add buscador-assets -- "C:\ruta\Buscador-de-assets.exe" --mcp`
+3. Pídele a Claude, por ejemplo: "busca una espada low poly y ponla en mi escena de Blender".
+
+Herramientas: `search_assets` (busca; devuelve id, licencia y si se puede descargar) y `download_asset` (baja el archivo a *Documentos → Buscador de assets → descargas*, con un `LICENCIA.txt` al lado, y dice cómo importarlo en Blender).
+Solo se pueden descargar los resultados con descarga directa (modelos de Poly Pizza, fuentes, etc.); los packs de pixel art y de Kenney solo tienen enlace a la página del autor.
+
+En desarrollo: `npm run mcp` arranca el mismo conector sin Electron.

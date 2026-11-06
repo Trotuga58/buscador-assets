@@ -132,3 +132,29 @@ section[aria-label='Ajustes'] a { color: var(--cobalt); font-weight: 600; }
   .card:hover { transform: none; }
 }
 .quick { margin: -.5rem 0 1rem; }
+
+/* Fichas de resultados (estilo Poly Pizza): miniatura grande, el detalle se abre al pulsar */
+.grid { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1.1rem; }
+.tile {
+  display: flex; flex-direction: column; padding: 0; text-align: left; cursor: pointer; font: inherit; color: var(--ink);
+  background: var(--panel); border: 2px solid var(--ink); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden;
+}
+.tile:hover, .tile:focus-visible { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--ink); }
+.tile .stage { display: block; }
+.tile .thumb { height: 190px; }
+.tile-body { display: flex; flex-direction: column; gap: .15rem; padding: .7rem .8rem .8rem; }
+.tile-body strong { font: 650 1rem/1.25 var(--font-body); overflow-wrap: anywhere; }
+
+/* Ventana de detalle */
+.overlay { position: fixed; inset: 0; z-index: 10; display: grid; place-items: center; padding: 1rem; background: rgb(15 19 48 / .6); overflow-y: auto; }
+.dialog { position: relative; width: min(560px, 100%); }
+.dialog .card:hover { transform: none; box-shadow: var(--shadow); }
+.dialog .thumb, .dialog model-viewer { height: min(360px, 50vh); }
+.dialog-close { position: absolute; right: .6rem; top: .6rem; z-index: 1; }
+.dialog .actions .btn { font-size: .9rem; }
+
+/* Conectar con Claude */
+.connect { margin-top: 1.25rem; max-width: 62ch; background: var(--panel); border: 2px solid var(--ink); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.25rem 1.5rem; }
+.connect pre { overflow-x: auto; background: var(--paper); border: 2px solid var(--ink); border-radius: var(--radius); padding: .8rem; font-size: .85rem; }
+.connect code { font-size: .88rem; overflow-wrap: anywhere; }
+@media (prefers-reduced-motion: reduce) { .tile:hover, .tile:focus-visible { transform: none; } }

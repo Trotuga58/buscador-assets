@@ -8,7 +8,8 @@ const stub = { name: 'stub', setup(b) { b.onResolve({ filter: /^@(fontsource|goo
 await build({ entryPoints: ['client/src/main.tsx'], bundle: true, outfile: '/tmp/prev/app.js', jsx: 'automatic', plugins: [stub], loader: { '.css': 'css' }, logLevel: 'error' });
 writeFileSync('/tmp/prev/index.html', '<!doctype html><html lang="es"><head><meta charset="utf-8"><link rel="stylesheet" href="app.css"></head><body><div id="root"></div><script src="app.js"></script></body></html>');
 
-const A = (o) => ({ thumbnailUrl: null, previewUrl: null, downloadUrl: null, licenseUrl: 'https://x', attributionText: 'x', ...o });
+const svg = (c) => 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><rect x="60" y="60" width="80" height="80" rx="12" fill="${c}"/></svg>`);
+const A = (o) => ({ thumbnailUrl: svg('#3355ff'), previewUrl: null, downloadUrl: null, licenseUrl: 'https://x', attributionText: 'x', ...o });
 const results = [
   A({ id: '1', type: 'model3d', title: 'Kenney Nature Kit', author: 'Kenney', license: 'cc0', sourceName: 'Lista curada', sourceUrl: 'https://kenney.nl' }),
   A({ id: '2', type: 'model3d', title: 'Low poly tree', author: 'Ana', license: 'cc-by', sourceName: 'Poly Pizza', sourceUrl: 'https://poly.pizza', downloadUrl: 'https://x/t.glb' }),
@@ -26,18 +27,19 @@ for (const scheme of ['light', 'dark']) {
   const page = await browser.newPage({ viewport: { width: 1200, height: 800 }, colorScheme: scheme });
   await page.route('**/api/**', (r) => {
     const u = r.request().url();
+    if (u.includes('/connect')) return r.fulfill({ contentType: 'application/json', body: JSON.stringify({ command: 'C:\\Users\\Jon\\Buscador-de-assets.exe', args: ['--mcp'] }) });
     const body = u.includes('/search') ? { results, sources: [{ source: 'Poly Pizza', ok: true }, { source: 'Freesound', ok: false, error: 'sin-configurar' }] } : u.includes('settings') ? { FREESOUND_API_KEY: false } : [];
     r.fulfill({ contentType: 'application/json', body: JSON.stringify(body) });
   });
   await page.goto(base + '/');
   await page.screenshot({ path: `/tmp/prev/home-${scheme}.png` });
-  if (scheme === 'light') {
-    await page.fill('#q', 'árbol'); await page.click('button[type=submit]'); await page.waitForSelector('.card');
-    await page.screenshot({ path: '/tmp/prev/results-light.png' });
-  } else {
-    await page.fill('#q', 'árbol'); await page.click('button[type=submit]'); await page.waitForSelector('.card');
-    await page.screenshot({ path: '/tmp/prev/results-dark.png' });
-  }
+  // Sin pulsar Buscar: la búsqueda debe lanzarse sola al escribir.
+  await page.fill('#q', 'árbol'); await page.waitForSelector('.tile', { timeout: 3000 });
+  await page.screenshot({ path: `/tmp/prev/results-${scheme}.png` });
+  await page.click('.tile >> nth=1'); await page.waitForSelector('.dialog');
+  await page.screenshot({ path: `/tmp/prev/dialog-${scheme}.png` });
+  await page.keyboard.press('Escape');
+  if (scheme === 'light') { await page.click('text=Ajustes'); await page.waitForSelector('.connect'); await page.screenshot({ path: '/tmp/prev/settings-light.png', fullPage: true }); }
   await page.close();
 }
 await browser.close(); srv.close();

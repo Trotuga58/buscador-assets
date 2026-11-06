@@ -15,7 +15,7 @@ export const licenseLabel = (l: License): string => LICENSE_LABEL[l];
 /** Mensaje en español para una fuente que no respondió; null si fue bien. */
 export function sourceMessage(s: SourceStatus): string | null {
   if (s.ok) return null;
-  if (s.error === 'sin-configurar') return `${s.source}: sin configurar (falta su clave en el archivo .env)`;
+  if (s.error === 'sin-configurar') return `${s.source}: sin configurar (pon su clave en Ajustes)`;
   if (s.error === 'timeout') return `${s.source} tardó demasiado en responder`;
   return `${s.source} no respondió`;
 }
@@ -86,3 +86,11 @@ export const SPRITE_FILTERS: Array<{ label: string; query: string }> = [
   { label: 'Fondos', query: 'fondos pixel art' },
   { label: 'Efectos', query: 'efectos particulas' },
 ];
+
+/** La búsqueda se lanza sola al escribir, pero no con 0 o 1 letra. */
+export function canSearchWhileTyping(q: string): boolean { return q.trim().length >= 2; }
+
+/** Bloque para pegar en la configuración de Claude Desktop. Sin ruta real (modo desarrollo) usa una de ejemplo. */
+export function connectConfig(command: string | null): string {
+  return JSON.stringify({ mcpServers: { 'buscador-assets': { command: command ?? 'C:\\RUTA\\Buscador-de-assets.exe', args: ['--mcp'] } } }, null, 2);
+}

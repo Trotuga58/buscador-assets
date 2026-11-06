@@ -33,3 +33,7 @@ export async function saveSettings(keys: Record<string, string>, fetchFn: typeof
   const res = await ok(await fetchFn('/api/settings', { method: 'PUT', body: JSON.stringify(keys), headers: { 'content-type': 'application/json' } }));
   return (await res.json()) as Record<string, boolean>;
 }
+
+export async function getConnect(fetchFn: typeof fetch = fetch): Promise<{ command: string | null; args: string[] }> {
+  return (await (await ok(await fetchFn('/api/connect'))).json()) as { command: string | null; args: string[] };
+}

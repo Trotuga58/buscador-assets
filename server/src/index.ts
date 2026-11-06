@@ -16,6 +16,8 @@ export interface ServerDeps {
   favoritesFile?: string;
   settingsFile?: string;
   staticDir?: string;
+  /** Ruta del .exe (solo en la app de escritorio): se enseña para configurar el conector de Claude. */
+  exePath?: string;
 }
 
 const TYPES: Array<AssetType | 'all'> = ['all', 'model3d', 'sprite', 'audio', 'font', 'code'];
@@ -102,6 +104,8 @@ export function buildServer(deps: ServerDeps): Server {
         await favorites.remove(id);
         return sendJson(res, 200, { ok: true });
       }
+
+      if (req.method === 'GET' && url.pathname === '/api/connect') return sendJson(res, 200, { command: deps.exePath ?? null, args: ['--mcp'] });
 
       if (url.pathname === '/api/settings' && req.method === 'GET') return sendJson(res, 200, settings.status());
 

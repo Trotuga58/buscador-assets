@@ -11,7 +11,8 @@
     "build:client": "vite build client --outDir ../dist/client --emptyOutDir",
     "build:server": "node scripts/build-server.mjs",
     "electron": "npm run build:client && npm run build:server && electron .",
-    "dist": "npm run build:client && npm run build:server && electron-builder --win portable"
+    "dist": "npm run build:client && npm run build:server && electron-builder --win portable",
+    "mcp": "tsx server/src/mcp-main.ts"
   },
   "dependencies": {
     "@google/model-viewer": "^4.0.0",

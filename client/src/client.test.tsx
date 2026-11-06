@@ -27,9 +27,9 @@ test('search() pide /api/search con q y type codificados', async () => {
   await assert.rejects(search('x', 'all', (async () => new Response('x', { status: 500 })) as unknown as typeof fetch), /500/);
 });
 
-test('tarjeta: título, autor, distintivo de licencia y enlace a la fuente', () => {
+test('ficha: título, autor, fuente y distintivo de licencia', () => {
   const html = renderToStaticMarkup(<ResultGrid results={[asset()]} searched />);
-  for (const part of ['Árbol bajo', 'de Ana', 'Poly Pizza', 'CC BY', 'href="https://s/1"']) assert.ok(html.includes(part), part);
+  for (const part of ["Árbol bajo", "de Ana", "Poly Pizza", "CC BY"]) assert.ok(html.includes(part), part);
 });
 
 test('sin miniatura → marcador de reserva, no <img>', () => {
@@ -46,7 +46,7 @@ test('lista vacía tras buscar → mensaje de nada encontrado; antes de buscar n
 test('fuentes caídas se avisan en español; las que fueron bien no', () => {
   assert.equal(sourceMessage({ source: 'Openverse', ok: true }), null);
   assert.equal(sourceMessage({ source: 'Openverse', ok: false, error: 'error' }), 'Openverse no respondió');
-  assert.match(sourceMessage({ source: 'Freesound', ok: false, error: 'sin-configurar' })!, /Freesound.*sin configurar.*\.env/);
+  assert.match(sourceMessage({ source: 'Freesound', ok: false, error: 'sin-configurar' })!, /Freesound.*sin configurar.*Ajustes/);
   assert.match(sourceMessage({ source: 'Sketchfab', ok: false, error: 'timeout' })!, /Sketchfab.*tardó/);
   const html = renderToStaticMarkup(<SourceStatusBar sources={[{ source: 'A', ok: true }, { source: 'B', ok: false, error: 'error' }]} />);
   assert.ok(html.includes('B no respondió') && !html.includes('A no'));
