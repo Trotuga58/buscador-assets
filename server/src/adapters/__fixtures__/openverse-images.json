@@ -1,0 +1,6 @@
+{"result_count":4,"results":[
+{"id":"img1","title":"Pixel tree","creator":"Lia","license":"cc0","license_url":"https://creativecommons.org/publicdomain/zero/1.0/","url":"https://cdn.example/tree.png","thumbnail":"https://api.openverse.org/v1/images/img1/thumb/","foreign_landing_url":"https://example.org/tree"},
+{"id":"img2","title":"","creator":null,"license":"by","license_url":"https://creativecommons.org/licenses/by/4.0/","url":"https://cdn.example/b.png","thumbnail":null,"foreign_landing_url":"https://example.org/b"},
+{"id":"img3","title":"Share alike","creator":"Zed","license":"by-sa","license_url":"https://creativecommons.org/licenses/by-sa/4.0/","url":"https://cdn.example/c.png","thumbnail":null,"foreign_landing_url":"https://example.org/c"},
+{"id":"img4","title":"No commercial","creator":"Yan","license":"by-nc","license_url":"https://creativecommons.org/licenses/by-nc/4.0/","url":"https://cdn.example/d.png","thumbnail":null,"foreign_landing_url":"https://example.org/d"}
+]}
