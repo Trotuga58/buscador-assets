@@ -102,3 +102,16 @@ test("type 'all' consulta cada tipo del adaptador; type concreto omite adaptador
   const r = await runSearch([a, b], 'otra', 'audio', await opts());
   assert.deepEqual(r.sources.map((s) => s.source), ['A']);
 });
+
+test('se descartan URLs que no son http(s) (javascript:, data:)', async () => {
+  const a = fake('A', async () => [
+    asset({ id: 'ok', thumbnailUrl: 'https://t/1.png', downloadUrl: 'https://d' }),
+    asset({ id: 'js', sourceUrl: 'javascript:alert(1)' }),
+    asset({ id: 'data', thumbnailUrl: 'data:text/html,<script>' }),
+    asset({ id: 'prev', previewUrl: 'javascript:void(0)' }),
+    asset({ id: 'dl', downloadUrl: 'vbscript:x' }),
+    asset({ id: 'lic', licenseUrl: 'javascript:1' }),
+  ]);
+  const r = await runSearch([a], 'q', 'sprite', await opts());
+  assert.deepEqual(r.results.map((x) => x.id), ['ok']);
+});

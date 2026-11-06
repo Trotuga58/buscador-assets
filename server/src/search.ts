@@ -7,9 +7,15 @@ export interface SearchOptions {
   timeoutMs: number;
 }
 
+const safeUrl = (u: string | null | undefined): boolean => {
+  if (!u) return true;
+  try { const p = new URL(u).protocol; return p === 'https:' || p === 'http:'; } catch { return false; }
+};
+
 /** Solo CC0/CC-BY; OFL y Apache-2.0 únicamente para fuentes; atribución obligatoria. */
 export function isAllowed(a: Asset): boolean {
   if (!a.attributionText || !a.attributionText.trim()) return false;
+  if (![a.sourceUrl, a.downloadUrl, a.previewUrl, a.thumbnailUrl, a.licenseUrl].every(safeUrl) || !a.sourceUrl) return false;
   if (a.license === 'cc0' || a.license === 'cc-by') return true;
   return a.type === 'font' && (a.license === 'ofl' || a.license === 'apache-2.0');
 }

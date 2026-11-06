@@ -2,7 +2,7 @@ import { createServer, type IncomingMessage, type Server, type ServerResponse } 
 import { pathToFileURL } from 'node:url';
 import type { Adapter, AssetType } from '../../shared/types.ts';
 import { createCache } from './cache.ts';
-import { runSearch } from './search.ts';
+import { isAllowed, runSearch } from './search.ts';
 import { allAdapters } from './adapters/index.ts';
 import { createFavorites } from './favorites.ts';
 import { join } from 'node:path';
@@ -53,17 +53,22 @@ export function buildServer(deps: ServerDeps): Server {
       if (url.pathname === '/api/favorites' && req.method === 'GET') return sendJson(res, 200, await favorites.list());
 
       if (url.pathname === '/api/favorites' && req.method === 'POST') {
+        if (!(req.headers['content-type'] ?? '').startsWith('application/json')) {
+          return sendJson(res, 415, { error: 'El contenido debe enviarse como application/json.' });
+        }
         let asset: Asset;
         try { asset = JSON.parse(await readBody(req)) as Asset; } catch { return sendJson(res, 400, { error: 'El cuerpo no es JSON válido.' }); }
-        if (!asset || typeof asset.id !== 'string' || typeof asset.title !== 'string' || typeof asset.sourceUrl !== 'string') {
-          return sendJson(res, 400, { error: 'Falta información del asset (id, title, sourceUrl).' });
+        if (!asset || typeof asset.id !== 'string' || typeof asset.title !== 'string' || typeof asset.sourceUrl !== 'string' || !isAllowed(asset)) {
+          return sendJson(res, 400, { error: 'Asset no válido: faltan datos, la licencia no es libre o hay enlaces que no son http(s).' });
         }
         await favorites.add(asset);
         return sendJson(res, 200, { ok: true });
       }
 
       if (url.pathname.startsWith('/api/favorites/') && req.method === 'DELETE') {
-        await favorites.remove(decodeURIComponent(url.pathname.slice('/api/favorites/'.length)));
+        let id: string;
+        try { id = decodeURIComponent(url.pathname.slice('/api/favorites/'.length)); } catch { return sendJson(res, 400, { error: 'Identificador mal codificado.' }); }
+        await favorites.remove(id);
         return sendJson(res, 200, { ok: true });
       }
 

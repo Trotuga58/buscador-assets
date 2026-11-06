@@ -62,7 +62,7 @@ test('ruta desconocida → 404', async () => {
 test('favoritos: POST, GET y DELETE', async () => {
   const post = await fetch(`${base}/api/favorites`, { method: 'POST', body: JSON.stringify(a), headers: { 'content-type': 'application/json' } });
   assert.equal(post.status, 200);
-  await fetch(`${base}/api/favorites`, { method: 'POST', body: JSON.stringify(a) });
+  await fetch(`${base}/api/favorites`, { method: 'POST', body: JSON.stringify(a), headers: { 'content-type': 'application/json' } });
   const list = await (await fetch(`${base}/api/favorites`)).json();
   assert.deepEqual(list.map((x: Asset) => x.id), ['m1']);
   const del = await fetch(`${base}/api/favorites/${encodeURIComponent('m1')}`, { method: 'DELETE' });
@@ -71,8 +71,25 @@ test('favoritos: POST, GET y DELETE', async () => {
 });
 
 test('favoritos: cuerpo inválido → 400', async () => {
-  const r = await fetch(`${base}/api/favorites`, { method: 'POST', body: '{"nada":1}' });
+  const r = await fetch(`${base}/api/favorites`, { method: 'POST', body: '{"nada":1}', headers: { 'content-type': 'application/json' } });
   assert.equal(r.status, 400);
-  const r2 = await fetch(`${base}/api/favorites`, { method: 'POST', body: 'no json' });
+  const r2 = await fetch(`${base}/api/favorites`, { method: 'POST', body: 'no json', headers: { 'content-type': 'application/json' } });
   assert.equal(r2.status, 400);
+});
+
+test('favoritos: POST sin content-type JSON → 415 (evita envíos desde otras webs)', async () => {
+  const r = await fetch(`${base}/api/favorites`, { method: 'POST', body: JSON.stringify(a), headers: { 'content-type': 'text/plain' } });
+  assert.equal(r.status, 415);
+  assert.deepEqual(await (await fetch(`${base}/api/favorites`)).json(), []);
+});
+
+test('favoritos: asset con URL javascript: o licencia no permitida → 400', async () => {
+  const send = (body: unknown) => fetch(`${base}/api/favorites`, { method: 'POST', body: JSON.stringify(body), headers: { 'content-type': 'application/json' } });
+  assert.equal((await send({ ...a, sourceUrl: 'javascript:alert(1)' })).status, 400);
+  assert.equal((await send({ ...a, license: 'cc-nc' })).status, 400);
+  assert.deepEqual(await (await fetch(`${base}/api/favorites`)).json(), []);
+});
+
+test('DELETE con id mal codificado → 400, no 500', async () => {
+  assert.equal((await fetch(`${base}/api/favorites/%E0%A4%A`, { method: 'DELETE' })).status, 400);
 });
