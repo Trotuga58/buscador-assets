@@ -61,3 +61,16 @@ export function externalLinks(query: string, type: AssetType | 'all'): Array<{ l
   if (type === 'all') return [oga(9, '2D'), oga(10, '3D'), itch];
   return [];
 }
+
+const LICENSE_NOTE: Record<License, string> = {
+  cc0: 'Dominio público: uso libre, sin obligación de atribuir',
+  'cc-by': 'Uso libre, incluso comercial, pero hay que atribuir al autor',
+  ofl: 'Fuente libre (SIL OFL): se puede usar en proyectos comerciales',
+  'apache-2.0': 'Licencia Apache 2.0: uso libre, conserva el aviso de licencia',
+};
+export const licenseNote = (l: License): string => LICENSE_NOTE[l];
+
+export const EXAMPLES = ['árbol', 'mazmorra', 'espada', 'música épica', 'botones'];
+
+/** Pictograma que ocupa el lugar de la miniatura cuando la fuente no la da. */
+export const TYPE_GLYPH: Record<AssetType, string> = { model3d: '3D', sprite: '2D', audio: '♪', font: 'Aa', code: '</>' };

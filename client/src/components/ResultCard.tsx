@@ -1,5 +1,5 @@
 import type { Asset } from '../../../shared/types.ts';
-import { licenseLabel, previewKind } from '../logic.ts';
+import { TYPE_GLYPH, licenseLabel, licenseNote, previewKind } from '../logic.ts';
 import { CopyAttribution } from './CopyAttribution.tsx';
 import { Preview } from './Preview.tsx';
 
@@ -10,27 +10,30 @@ export function ResultCard({ asset, favorite = false, onToggleFavorite }: Props)
   const thumb = asset.thumbnailUrl ? (
     <img className="thumb" src={asset.thumbnailUrl} alt={`Miniatura de ${asset.title}`} loading="lazy" />
   ) : (
-    <div className="thumb thumb-placeholder" role="img" aria-label="Sin miniatura">Sin miniatura</div>
+    <div className="thumb thumb-placeholder" role="img" aria-label="Sin miniatura"><span aria-hidden="true">{TYPE_GLYPH[asset.type]}</span></div>
   );
   return (
     <article className="card" data-type={asset.type}>
-      {kind === 'model' || kind === 'image' ? <Preview asset={asset} /> : thumb}
-      {kind === 'audio' && <Preview asset={asset} />}
-      <h3>{asset.title}</h3>
-      <p className="author">de {asset.author} · {asset.sourceName}</p>
-      <p>
-        <a className="badge" href={asset.licenseUrl || undefined} target="_blank" rel="noreferrer">{licenseLabel(asset.license)}</a>
-      </p>
-      <p className="actions">
-        <a href={asset.sourceUrl} target="_blank" rel="noreferrer">Ir a la fuente</a>
-        {asset.downloadUrl && <a href={asset.downloadUrl} target="_blank" rel="noreferrer">Descargar</a>}
-        <CopyAttribution text={asset.attributionText} />
-        {onToggleFavorite && (
-          <button type="button" onClick={() => onToggleFavorite(asset)}>
-            {favorite ? 'Quitar de favoritos' : 'Guardar en favoritos'}
-          </button>
-        )}
-      </p>
+      <div className="stage">
+        {kind === 'model' || kind === 'image' ? <Preview asset={asset} /> : thumb}
+        <a className="badge" data-license={asset.license} href={asset.licenseUrl || undefined} target="_blank" rel="noreferrer"
+          title={licenseNote(asset.license)}>{licenseLabel(asset.license)}</a>
+      </div>
+      <div className="card-body">
+        <h3>{asset.title}</h3>
+        <p className="author">de {asset.author}, en {asset.sourceName}</p>
+        {kind === 'audio' && <Preview asset={asset} />}
+        <div className="actions">
+          {asset.downloadUrl && <a className="btn btn-primary" href={asset.downloadUrl} target="_blank" rel="noreferrer">Descargar</a>}
+          <a className="btn" href={asset.sourceUrl} target="_blank" rel="noreferrer">Ir a la fuente</a>
+          <CopyAttribution text={asset.attributionText} />
+          {onToggleFavorite && (
+            <button type="button" className="btn btn-fav" aria-pressed={favorite} onClick={() => onToggleFavorite(asset)}>
+              {favorite ? 'Quitar de favoritos' : 'Guardar en favoritos'}
+            </button>
+          )}
+        </div>
+      </div>
     </article>
   );
 }

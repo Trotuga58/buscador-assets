@@ -1,11 +1,11 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import type { Asset, AssetType, SearchResponse } from '../../shared/types.ts';
 import { addFavorite, getSettings, listFavorites, removeFavorite, saveSettings, search } from './api.ts';
-import { TABS } from './logic.ts';
-import { ResultGrid } from './components/ResultGrid.tsx';
+import { EXAMPLES, TABS } from './logic.ts';
 import { ExternalSearch } from './components/ExternalSearch.tsx';
 import { SettingsPanel } from './components/SettingsPanel.tsx';
 import { Favorites } from './components/Favorites.tsx';
+import { ResultGrid } from './components/ResultGrid.tsx';
 import { SourceStatusBar } from './components/SourceStatusBar.tsx';
 
 export function App() {
@@ -14,13 +14,12 @@ export function App() {
   const [data, setData] = useState<SearchResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
   const [favorites, setFavorites] = useState<Asset[]>([]);
-  const [showFavorites, setShowFavorites] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
+  const [panel, setPanel] = useState<'favorites' | 'settings' | null>(null);
   const [keyStatus, setKeyStatus] = useState<Record<string, boolean>>({});
-  useEffect(() => { getSettings().then(setKeyStatus).catch(() => setKeyStatus({})); }, []);
+
   useEffect(() => { listFavorites().then(setFavorites).catch(() => setFavorites([])); }, []);
+  useEffect(() => { getSettings().then(setKeyStatus).catch(() => setKeyStatus({})); }, []);
 
   async function toggleFavorite(a: Asset) {
     const isFav = favorites.some((f) => f.id === a.id);
@@ -34,6 +33,7 @@ export function App() {
 
   async function run(q: string, t: AssetType | 'all') {
     if (!q.trim()) return;
+    setPanel(null);
     setLoading(true);
     setError(null);
     try {
@@ -48,31 +48,60 @@ export function App() {
 
   const onSubmit = (e: FormEvent) => { e.preventDefault(); void run(query, type); };
   const pick = (t: AssetType | 'all') => { setType(t); void run(query, t); };
+  const example = (q: string) => { setQuery(q); void run(q, type); };
+  const toggle = (p: 'favorites' | 'settings') => setPanel((cur) => (cur === p ? null : p));
 
   return (
-    <main>
-      <h1>Buscador de assets libres</h1>
-      <form onSubmit={onSubmit} role="search">
-        <label htmlFor="q">Qué necesitas</label>
-        <input id="q" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="árbol, música tranquila, botón…" />
-        <button type="submit">Buscar</button>
-      </form>
-      <div role="tablist" aria-label="Tipo de asset">
-        {TABS.map((t) => (
-          <button key={t.type} role="tab" aria-selected={t.type === type} onClick={() => pick(t.type)}>{t.label}</button>
-        ))}
-      </div>
-      <button type="button" onClick={() => setShowFavorites((v) => !v)} aria-pressed={showFavorites}>
-        Favoritos ({favorites.length})
-      </button>
-      <button type="button" onClick={() => setShowSettings((v) => !v)} aria-pressed={showSettings}>Ajustes</button>
-      {showSettings && <SettingsPanel status={keyStatus} onSave={async (k) => { setKeyStatus(await saveSettings(k)); }} />}
-      {showFavorites && <Favorites items={favorites} onToggle={toggleFavorite} />}
-      {loading && <p role="status">Buscando…</p>}
-      {error && <p role="alert">{error}</p>}
-      {data && <SourceStatusBar sources={data.sources} />}
-      {data && <ExternalSearch query={query} type={type} />}
-      {data && <ResultGrid results={data.results} searched favoriteIds={new Set(favorites.map((f) => f.id))} onToggleFavorite={toggleFavorite} />}
-    </main>
+    <div className="shell">
+      <header className="top">
+        <h1>Buscador de assets</h1>
+        <nav aria-label="Secciones">
+          <button type="button" className="btn" aria-pressed={panel === 'favorites'} onClick={() => toggle('favorites')}>
+            Favoritos ({favorites.length})
+          </button>
+          <button type="button" className="btn" aria-pressed={panel === 'settings'} onClick={() => toggle('settings')}>Ajustes</button>
+        </nav>
+      </header>
+
+      <main>
+        <form onSubmit={onSubmit} role="search" className="finder">
+          <label htmlFor="q" className="sr-only">Qué necesitas</label>
+          <input id="q" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Qué necesitas: espada, mazmorra, música épica…" autoFocus />
+          <button type="submit" className="btn btn-primary btn-big">Buscar</button>
+        </form>
+
+        <div role="tablist" aria-label="Tipo de asset" className="tabs">
+          {TABS.map((t) => (
+            <button key={t.type} role="tab" aria-selected={t.type === type} onClick={() => pick(t.type)}>{t.label}</button>
+          ))}
+        </div>
+
+        {panel === 'settings' && <SettingsPanel status={keyStatus} onSave={async (k) => { setKeyStatus(await saveSettings(k)); }} />}
+        {panel === 'favorites' && <Favorites items={favorites} onToggle={toggleFavorite} />}
+
+        {!panel && (
+          <>
+            {loading && <p role="status" className="note">Buscando…</p>}
+            {error && <p role="alert" className="note note-error">{error}</p>}
+            {data && <SourceStatusBar sources={data.sources} />}
+            {data && <ExternalSearch query={query} type={type} />}
+            {data && <ResultGrid results={data.results} searched favoriteIds={new Set(favorites.map((f) => f.id))} onToggleFavorite={toggleFavorite} />}
+            {!data && !loading && !error && (
+              <section className="intro">
+                <p>Modelos 3D, sprites, sonidos y fuentes con licencia libre, listos para usar en tus juegos.</p>
+                <p className="legend">
+                  <span className="badge" data-license="cc0">CC0</span> sin obligación de atribuir.{' '}
+                  <span className="badge" data-license="cc-by">CC BY</span> hay que atribuir: usa el botón Copiar atribución.
+                </p>
+                <p>Prueba con:</p>
+                <ul className="chips">
+                  {EXAMPLES.map((x) => <li key={x}><button type="button" onClick={() => example(x)}>{x}</button></li>)}
+                </ul>
+              </section>
+            )}
+          </>
+        )}
+      </main>
+    </div>
   );
 }

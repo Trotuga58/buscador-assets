@@ -5,7 +5,7 @@ export function CopyAttribution({ text }: { text: string }) {
   const [state, setState] = useState<'idle' | 'ok' | 'fail'>('idle');
   const click = async () => setState((await copyAttribution(text, navigator.clipboard)) ? 'ok' : 'fail');
   return (
-    <button type="button" onClick={click}>
+    <button type="button" className="btn" onClick={click}>
       {state === 'ok' ? 'Copiado' : state === 'fail' ? 'No se pudo copiar' : 'Copiar atribución'}
     </button>
   );

@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { renderToStaticMarkup } from 'react-dom/server';
 import type { Asset } from '../../shared/types.ts';
-import { TABS, sourceMessage, licenseLabel } from './logic.ts';
+import { TABS, sourceMessage, licenseLabel, licenseNote } from './logic.ts';
 import { search } from './api.ts';
 import { ResultGrid } from './components/ResultGrid.tsx';
 import { SourceStatusBar } from './components/SourceStatusBar.tsx';
@@ -55,4 +55,23 @@ test('fuentes caídas se avisan en español; las que fueron bien no', () => {
 
 test('licenseLabel cubre todas las licencias', () => {
   assert.deepEqual((['cc0', 'cc-by', 'ofl', 'apache-2.0'] as const).map(licenseLabel), ['CC0', 'CC BY', 'OFL', 'Apache 2.0']);
+});
+
+test('licenseNote explica en una frase si hay que atribuir', () => {
+  assert.match(licenseNote('cc0'), /sin obligaci/i);
+  assert.match(licenseNote('cc-by'), /atribu/i);
+  assert.match(licenseNote('ofl'), /fuente|libre/i);
+  assert.match(licenseNote('apache-2.0'), /atribu|aviso|licencia/i);
+});
+
+test('la tarjeta marca la licencia con data-license y una nota (title)', () => {
+  const html = renderToStaticMarkup(<ResultGrid results={[asset({ license: 'cc0' })]} searched />);
+  assert.ok(html.includes('data-license="cc0"'));
+  assert.ok(/title="[^"]*sin obligaci/i.test(html));
+});
+
+test('sin miniatura el marcador muestra el pictograma del tipo', () => {
+  const html = renderToStaticMarkup(<ResultGrid results={[asset({ thumbnailUrl: null, type: 'audio', previewUrl: null })]} searched />);
+  assert.ok(html.includes('♪') && html.includes('aria-label="Sin miniatura"'));
+  assert.ok(renderToStaticMarkup(<ResultGrid results={[asset({ thumbnailUrl: null, type: 'font' })]} searched />).includes('Aa'));
 });
