@@ -1,8 +1,9 @@
-import { useState, type FormEvent } from 'react';
-import type { AssetType, SearchResponse } from '../../shared/types.ts';
-import { search } from './api.ts';
+import { useEffect, useState, type FormEvent } from 'react';
+import type { Asset, AssetType, SearchResponse } from '../../shared/types.ts';
+import { addFavorite, listFavorites, removeFavorite, search } from './api.ts';
 import { TABS } from './logic.ts';
 import { ResultGrid } from './components/ResultGrid.tsx';
+import { Favorites } from './components/Favorites.tsx';
 import { SourceStatusBar } from './components/SourceStatusBar.tsx';
 
 export function App() {
@@ -11,6 +12,20 @@ export function App() {
   const [data, setData] = useState<SearchResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const [favorites, setFavorites] = useState<Asset[]>([]);
+  const [showFavorites, setShowFavorites] = useState(false);
+  useEffect(() => { listFavorites().then(setFavorites).catch(() => setFavorites([])); }, []);
+
+  async function toggleFavorite(a: Asset) {
+    const isFav = favorites.some((f) => f.id === a.id);
+    try {
+      if (isFav) await removeFavorite(a.id); else await addFavorite(a);
+      setFavorites(await listFavorites());
+    } catch {
+      setError('No se pudo actualizar los favoritos.');
+    }
+  }
 
   async function run(q: string, t: AssetType | 'all') {
     if (!q.trim()) return;
@@ -42,10 +57,14 @@ export function App() {
           <button key={t.type} role="tab" aria-selected={t.type === type} onClick={() => pick(t.type)}>{t.label}</button>
         ))}
       </div>
+      <button type="button" onClick={() => setShowFavorites((v) => !v)} aria-pressed={showFavorites}>
+        Favoritos ({favorites.length})
+      </button>
+      {showFavorites && <Favorites items={favorites} onToggle={toggleFavorite} />}
       {loading && <p role="status">Buscando…</p>}
       {error && <p role="alert">{error}</p>}
       {data && <SourceStatusBar sources={data.sources} />}
-      {data && <ResultGrid results={data.results} searched />}
+      {data && <ResultGrid results={data.results} searched favoriteIds={new Set(favorites.map((f) => f.id))} onToggleFavorite={toggleFavorite} />}
     </main>
   );
 }

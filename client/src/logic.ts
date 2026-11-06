@@ -21,3 +21,20 @@ export function sourceMessage(s: SourceStatus): string | null {
 }
 
 export const EMPTY_MESSAGE = 'No se encontró nada con licencia libre. Prueba con otras palabras o con otra pestaña.';
+
+import type { Asset } from '../../shared/types.ts';
+
+export type PreviewKind = 'model' | 'audio' | 'image' | null;
+
+export function previewKind(a: Asset): PreviewKind {
+  if (!a.previewUrl) return null;
+  if (a.type === 'model3d') return 'model';
+  if (a.type === 'audio') return 'audio';
+  if (a.type === 'sprite') return 'image';
+  return null;
+}
+
+export async function copyAttribution(text: string, clipboard: { writeText(t: string): Promise<void> } | undefined): Promise<boolean> {
+  if (!clipboard) return false;
+  try { await clipboard.writeText(text); return true; } catch { return false; }
+}

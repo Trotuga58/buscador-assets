@@ -4,6 +4,9 @@ import type { Adapter, AssetType } from '../../shared/types.ts';
 import { createCache } from './cache.ts';
 import { runSearch } from './search.ts';
 import { allAdapters } from './adapters/index.ts';
+import { createFavorites } from './favorites.ts';
+import { join } from 'node:path';
+import type { Asset } from '../../shared/types.ts';
 
 export interface ServerDeps {
   adapters: Adapter[];
@@ -20,8 +23,18 @@ export function sendJson(res: ServerResponse, status: number, body: unknown): vo
   res.end(JSON.stringify(body));
 }
 
+function readBody(req: IncomingMessage, max = 200_000): Promise<string> {
+  return new Promise((resolve, reject) => {
+    let size = 0; const chunks: Buffer[] = [];
+    req.on('data', (c: Buffer) => { size += c.length; if (size > max) { reject(new Error('demasiado grande')); req.destroy(); } else chunks.push(c); });
+    req.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
+    req.on('error', reject);
+  });
+}
+
 export function buildServer(deps: ServerDeps): Server {
   const cache = createCache(deps.cacheDir, DAY_MS);
+  const favorites = createFavorites(deps.favoritesFile ?? join(deps.cacheDir, 'favorites.json'));
 
   return createServer(async (req: IncomingMessage, res: ServerResponse) => {
     try {
@@ -35,6 +48,23 @@ export function buildServer(deps: ServerDeps): Server {
         if (!TYPES.includes(type)) return sendJson(res, 400, { error: `Tipo no válido. Usa: ${TYPES.join(', ')}.` });
         const out = await runSearch(deps.adapters, q, type, { cache, env: deps.env, timeoutMs: 8000 });
         return sendJson(res, 200, out);
+      }
+
+      if (url.pathname === '/api/favorites' && req.method === 'GET') return sendJson(res, 200, await favorites.list());
+
+      if (url.pathname === '/api/favorites' && req.method === 'POST') {
+        let asset: Asset;
+        try { asset = JSON.parse(await readBody(req)) as Asset; } catch { return sendJson(res, 400, { error: 'El cuerpo no es JSON válido.' }); }
+        if (!asset || typeof asset.id !== 'string' || typeof asset.title !== 'string' || typeof asset.sourceUrl !== 'string') {
+          return sendJson(res, 400, { error: 'Falta información del asset (id, title, sourceUrl).' });
+        }
+        await favorites.add(asset);
+        return sendJson(res, 200, { ok: true });
+      }
+
+      if (url.pathname.startsWith('/api/favorites/') && req.method === 'DELETE') {
+        await favorites.remove(decodeURIComponent(url.pathname.slice('/api/favorites/'.length)));
+        return sendJson(res, 200, { ok: true });
       }
 
       sendJson(res, 404, { error: 'No encontrado.' });

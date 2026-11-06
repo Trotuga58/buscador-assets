@@ -58,3 +58,21 @@ test('q solo espacios → 200 con lista vacía', async () => {
 test('ruta desconocida → 404', async () => {
   assert.equal((await fetch(`${base}/api/nada`)).status, 404);
 });
+
+test('favoritos: POST, GET y DELETE', async () => {
+  const post = await fetch(`${base}/api/favorites`, { method: 'POST', body: JSON.stringify(a), headers: { 'content-type': 'application/json' } });
+  assert.equal(post.status, 200);
+  await fetch(`${base}/api/favorites`, { method: 'POST', body: JSON.stringify(a) });
+  const list = await (await fetch(`${base}/api/favorites`)).json();
+  assert.deepEqual(list.map((x: Asset) => x.id), ['m1']);
+  const del = await fetch(`${base}/api/favorites/${encodeURIComponent('m1')}`, { method: 'DELETE' });
+  assert.equal(del.status, 200);
+  assert.deepEqual(await (await fetch(`${base}/api/favorites`)).json(), []);
+});
+
+test('favoritos: cuerpo inválido → 400', async () => {
+  const r = await fetch(`${base}/api/favorites`, { method: 'POST', body: '{"nada":1}' });
+  assert.equal(r.status, 400);
+  const r2 = await fetch(`${base}/api/favorites`, { method: 'POST', body: 'no json' });
+  assert.equal(r2.status, 400);
+});
