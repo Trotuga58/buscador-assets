@@ -38,3 +38,10 @@ export async function copyAttribution(text: string, clipboard: { writeText(t: st
   if (!clipboard) return false;
   try { await clipboard.writeText(text); return true; } catch { return false; }
 }
+
+export const KEY_HELP: Array<{ name: string; label: string; url: string }> = [
+  { name: 'FREESOUND_API_KEY', label: 'Freesound (sonidos y música)', url: 'https://freesound.org/apiv2/apply' },
+  { name: 'POLYPIZZA_API_KEY', label: 'Poly Pizza (modelos 3D)', url: 'https://poly.pizza' },
+  { name: 'SKETCHFAB_API_KEY', label: 'Sketchfab (modelos 3D)', url: 'https://sketchfab.com/settings/password' },
+  { name: 'GOOGLE_FONTS_API_KEY', label: 'Google Fonts (fuentes)', url: 'https://developers.google.com/fonts/docs/developer_api' },
+];

@@ -1,8 +1,9 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import type { Asset, AssetType, SearchResponse } from '../../shared/types.ts';
-import { addFavorite, listFavorites, removeFavorite, search } from './api.ts';
+import { addFavorite, getSettings, listFavorites, removeFavorite, saveSettings, search } from './api.ts';
 import { TABS } from './logic.ts';
 import { ResultGrid } from './components/ResultGrid.tsx';
+import { SettingsPanel } from './components/SettingsPanel.tsx';
 import { Favorites } from './components/Favorites.tsx';
 import { SourceStatusBar } from './components/SourceStatusBar.tsx';
 
@@ -15,6 +16,9 @@ export function App() {
 
   const [favorites, setFavorites] = useState<Asset[]>([]);
   const [showFavorites, setShowFavorites] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const [keyStatus, setKeyStatus] = useState<Record<string, boolean>>({});
+  useEffect(() => { getSettings().then(setKeyStatus).catch(() => setKeyStatus({})); }, []);
   useEffect(() => { listFavorites().then(setFavorites).catch(() => setFavorites([])); }, []);
 
   async function toggleFavorite(a: Asset) {
@@ -60,6 +64,8 @@ export function App() {
       <button type="button" onClick={() => setShowFavorites((v) => !v)} aria-pressed={showFavorites}>
         Favoritos ({favorites.length})
       </button>
+      <button type="button" onClick={() => setShowSettings((v) => !v)} aria-pressed={showSettings}>Ajustes</button>
+      {showSettings && <SettingsPanel status={keyStatus} onSave={async (k) => { setKeyStatus(await saveSettings(k)); }} />}
       {showFavorites && <Favorites items={favorites} onToggle={toggleFavorite} />}
       {loading && <p role="status">Buscando…</p>}
       {error && <p role="alert">{error}</p>}

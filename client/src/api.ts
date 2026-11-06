@@ -24,3 +24,12 @@ export async function addFavorite(a: Asset, fetchFn: typeof fetch = fetch): Prom
 export async function removeFavorite(id: string, fetchFn: typeof fetch = fetch): Promise<void> {
   await ok(await fetchFn(`/api/favorites/${encodeURIComponent(id)}`, { method: 'DELETE' }));
 }
+
+export async function getSettings(fetchFn: typeof fetch = fetch): Promise<Record<string, boolean>> {
+  return (await (await ok(await fetchFn('/api/settings'))).json()) as Record<string, boolean>;
+}
+
+export async function saveSettings(keys: Record<string, string>, fetchFn: typeof fetch = fetch): Promise<Record<string, boolean>> {
+  const res = await ok(await fetchFn('/api/settings', { method: 'PUT', body: JSON.stringify(keys), headers: { 'content-type': 'application/json' } }));
+  return (await res.json()) as Record<string, boolean>;
+}

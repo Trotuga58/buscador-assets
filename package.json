@@ -4,10 +4,14 @@
   "type": "module",
   "scripts": {
     "test": "tsx --test \"server/src/**/*.test.ts\" \"client/src/**/*.test.ts\" \"client/src/**/*.test.tsx\"",
-    "dev:server": "tsx server/src/index.ts",
+    "dev:server": "tsx server/src/main.ts",
     "dev:client": "vite client",
     "smoke": "tsx server/scripts/smoke.ts",
-    "typecheck": "tsc --noEmit -p ."
+    "typecheck": "tsc --noEmit -p .",
+    "build:client": "vite build client --outDir ../dist/client --emptyOutDir",
+    "build:server": "node scripts/build-server.mjs",
+    "electron": "npm run build:client && npm run build:server && electron .",
+    "dist": "npm run build:client && npm run build:server && electron-builder --win portable"
   },
   "dependencies": {
     "@google/model-viewer": "^4.0.0",
@@ -21,6 +25,32 @@
     "@vitejs/plugin-react": "^4.0.0",
     "tsx": "^4.0.0",
     "typescript": "^5.0.0",
-    "vite": "^6.0.0"
+    "vite": "^6.0.0",
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.0",
+    "esbuild": "^0.25.0"
+  },
+  "main": "electron/main.cjs",
+  "version": "1.0.0",
+  "description": "Buscador de assets libres",
+  "author": "Jon",
+  "build": {
+    "appId": "com.jon.buscador-assets",
+    "productName": "Buscador de assets",
+    "files": [
+      "dist/**",
+      "dist-electron/**",
+      "electron/**",
+      "package.json"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": "portable"
+    },
+    "portable": {
+      "artifactName": "Buscador-de-assets.exe"
+    }
   }
 }

@@ -3,11 +3,27 @@
 Busca en un solo sitio modelos 3D, sprites/2D, música y sonidos, fuentes y packs, y enseña solo lo que es CC0 o CC-BY
 (las fuentes tipográficas, OFL o Apache 2.0). Cada resultado trae el texto de atribución listo para copiar.
 
-## Arrancar
+## Crear el ejecutable de Windows (una sola vez)
+
+1. Instala Node.js (versión LTS) desde https://nodejs.org si no lo tienes.
+2. Abre una terminal en esta carpeta y ejecuta:
 
 ```bash
 npm install
-cp .env.example .env     # y pega tus claves (abajo)
+npm run dist
+```
+
+3. Saldrá `release/Buscador-de-assets.exe`. Haz doble clic para abrirlo, o cópialo donde quieras (no necesita instalación).
+4. Dentro de la app, pulsa **Ajustes** y pega tus claves gratuitas. Se guardan en tu usuario de Windows, no en el `.exe`.
+
+Windows puede avisar de "aplicación desconocida" porque el programa no está firmado: pulsa "Más información" y "Ejecutar de todas formas".
+Si quieres probarlo sin crear el `.exe`: `npm run electron`.
+
+## Arrancar sin ejecutable (para desarrollar)
+
+```bash
+npm install
+cp .env.example .env     # opcional: o pega las claves en Ajustes
 npm run dev:server       # http://127.0.0.1:3001
 npm run dev:client       # en otra terminal; abre la dirección que imprime Vite
 ```

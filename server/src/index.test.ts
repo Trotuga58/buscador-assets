@@ -14,7 +14,14 @@ const a: Asset = {
 const adapter: Adapter = { name: 'F', types: ['model3d'], requiresKey: null, search: async () => [a] };
 
 const dir = await mkdtemp(join(tmpdir(), 'srv-'));
-const server = buildServer({ adapters: [adapter], env: {}, cacheDir: dir, favoritesFile: join(dir, 'fav.json') });
+import { mkdir, writeFile } from 'node:fs/promises';
+const staticDir = join(dir, 'www');
+await mkdir(join(staticDir, 'assets'), { recursive: true });
+await writeFile(join(staticDir, 'index.html'), '<h1>hola</h1>');
+await writeFile(join(staticDir, 'assets', 'app.js'), 'console.log(1)');
+await writeFile(join(dir, 'secreto.txt'), 'SECRETO');
+const env: Record<string, string | undefined> = {};
+const server = buildServer({ adapters: [adapter], env, cacheDir: dir, favoritesFile: join(dir, 'fav.json'), settingsFile: join(dir, 'set.json'), staticDir });
 await new Promise<void>((r) => server.listen(0, '127.0.0.1', r));
 const base = `http://127.0.0.1:${(server.address() as AddressInfo).port}`;
 after(() => server.close());
@@ -92,4 +99,48 @@ test('favoritos: asset con URL javascript: o licencia no permitida → 400', asy
 
 test('DELETE con id mal codificado → 400, no 500', async () => {
   assert.equal((await fetch(`${base}/api/favorites/%E0%A4%A`, { method: 'DELETE' })).status, 400);
+});
+
+test('estáticos: / sirve index.html y assets/app.js con su tipo', async () => {
+  const r = await fetch(`${base}/`);
+  assert.equal(r.status, 200);
+  assert.match(r.headers.get('content-type')!, /text\/html/);
+  assert.equal(await r.text(), '<h1>hola</h1>');
+  const js = await fetch(`${base}/assets/app.js`);
+  assert.match(js.headers.get('content-type')!, /javascript/);
+});
+
+test('estáticos: ruta desconocida sin extensión cae en index.html; /api desconocida sigue 404', async () => {
+  assert.equal(await (await fetch(`${base}/cualquier/cosa`)).text(), '<h1>hola</h1>');
+  assert.equal((await fetch(`${base}/api/nada`)).status, 404);
+});
+
+test('estáticos: no se puede salir de la carpeta (../)', async () => {
+  const raw = await new Promise<string>((resolve) => {
+    import('node:net').then(({ connect }) => {
+      const port = (server.address() as AddressInfo).port;
+      const c = connect(port, '127.0.0.1', () => c.write('GET /../secreto.txt HTTP/1.1\r\nHost: x\r\nConnection: close\r\n\r\n'));
+      let out = ''; c.on('data', (d) => (out += d)); c.on('close', () => resolve(out));
+    });
+  });
+  assert.ok(!raw.includes('SECRETO'));
+  const enc = await fetch(`${base}/..%2Fsecreto.txt`);
+  assert.ok(!(await enc.text()).includes('SECRETO'));
+});
+
+test('ajustes: GET dice qué claves están configuradas, sin devolver su valor', async () => {
+  const r = await (await fetch(`${base}/api/settings`)).json();
+  assert.equal(r.FREESOUND_API_KEY, false);
+});
+
+test('ajustes: PUT guarda la clave (solo JSON) y la deja en env', async () => {
+  const bad = await fetch(`${base}/api/settings`, { method: 'PUT', body: '{"FREESOUND_API_KEY":"zzz"}', headers: { 'content-type': 'text/plain' } });
+  assert.equal(bad.status, 415);
+  assert.equal(env.FREESOUND_API_KEY, undefined);
+  const ok = await fetch(`${base}/api/settings`, { method: 'PUT', body: '{"FREESOUND_API_KEY":"zzz"}', headers: { 'content-type': 'application/json' } });
+  assert.equal(ok.status, 200);
+  assert.equal(env.FREESOUND_API_KEY, 'zzz');
+  const st = await ok.json();
+  assert.equal(st.FREESOUND_API_KEY, true);
+  assert.ok(!JSON.stringify(st).includes('zzz'));
 });
