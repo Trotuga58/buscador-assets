@@ -1,0 +1,6 @@
+{"kind":"webfonts#webfontList","items":[
+{"family":"Roboto","category":"sans-serif","files":{"regular":"https://fonts.gstatic.com/roboto.ttf"}},
+{"family":"Roboto Mono","category":"monospace","files":{"regular":"https://fonts.gstatic.com/robotomono.ttf"}},
+{"family":"Lobster","category":"display","files":{"regular":"https://fonts.gstatic.com/lobster.ttf"}},
+{"family":"Open Sans","category":"sans-serif","files":{"regular":"https://fonts.gstatic.com/opensans.ttf"}}
+]}

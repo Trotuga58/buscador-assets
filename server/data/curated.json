@@ -1,0 +1,170 @@
+[
+ {
+  "title": "Kenney Platformer Pack Redux",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/platformer-pack-redux",
+  "tags": [
+   "plataformas",
+   "2D",
+   "personajes",
+   "tiles"
+  ]
+ },
+ {
+  "title": "Kenney Tiny Dungeon",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/tiny-dungeon",
+  "tags": [
+   "mazmorra",
+   "pixel art",
+   "tileset",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kenney UI Pack",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/ui-pack",
+  "tags": [
+   "interfaz",
+   "UI",
+   "botones",
+   "menus"
+  ]
+ },
+ {
+  "title": "Kenney Pixel Platformer",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/pixel-platformer",
+  "tags": [
+   "pixel art",
+   "plataformas",
+   "tileset",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kenney Interface Sounds",
+  "author": "Kenney",
+  "type": "audio",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/interface-sounds",
+  "tags": [
+   "interfaz",
+   "clic",
+   "efectos",
+   "sonidos"
+  ]
+ },
+ {
+  "title": "Kenney Impact Sounds",
+  "author": "Kenney",
+  "type": "audio",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/impact-sounds",
+  "tags": [
+   "golpes",
+   "impactos",
+   "efectos",
+   "sonidos"
+  ]
+ },
+ {
+  "title": "Kenney Digital Audio",
+  "author": "Kenney",
+  "type": "audio",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/digital-audio",
+  "tags": [
+   "retro",
+   "efectos",
+   "sonidos",
+   "laser"
+  ]
+ },
+ {
+  "title": "Kenney Nature Kit",
+  "author": "Kenney",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/nature-kit",
+  "tags": [
+   "arboles",
+   "naturaleza",
+   "rocas",
+   "3D"
+  ]
+ },
+ {
+  "title": "Kenney Furniture Kit",
+  "author": "Kenney",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/furniture-kit",
+  "tags": [
+   "muebles",
+   "interior",
+   "casa",
+   "3D"
+  ]
+ },
+ {
+  "title": "Kenney Space Kit",
+  "author": "Kenney",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/space-kit",
+  "tags": [
+   "espacio",
+   "naves",
+   "3D",
+   "ciencia ficcion"
+  ]
+ },
+ {
+  "title": "Quaternius Ultimate Stylized Nature",
+  "author": "Quaternius",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://quaternius.com/packs/ultimatestylizednature.html",
+  "tags": [
+   "arboles",
+   "naturaleza",
+   "estilizado",
+   "3D"
+  ]
+ },
+ {
+  "title": "Quaternius Ultimate Space Kit",
+  "author": "Quaternius",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://quaternius.com/packs/ultimatespacekit.html",
+  "tags": [
+   "espacio",
+   "naves",
+   "3D",
+   "low poly"
+  ]
+ }
+]
