@@ -1,7 +1,7 @@
 # Buscador de assets libres
 
-Busca en un solo sitio modelos 3D, sprites/2D, música y sonidos, fuentes y packs, y enseña solo lo que es CC0 o CC-BY
-(las fuentes tipográficas, OFL o Apache 2.0). Cada resultado trae el texto de atribución listo para copiar.
+Busca en un solo sitio modelos 3D, sprites/2D y música y sonidos, y enseña solo lo que es **CC0** (dominio público):
+se usa sin atribuir ni cumplir condiciones, también en proyectos comerciales.
 
 ## Crear el ejecutable de Windows (una sola vez)
 
@@ -36,7 +36,6 @@ Sin claves funciona la lista curada (2D, 3D y audio de juegos) y Openverse (solo
 |---|---|---|
 | `FREESOUND_API_KEY` | Freesound | https://freesound.org/apiv2/apply |
 | `POLYPIZZA_API_KEY` | Poly Pizza | https://poly.pizza (ajustes de cuenta, sección API) |
-| `GOOGLE_FONTS_API_KEY` | Google Fonts | https://developers.google.com/fonts/docs/developer_api |
 
 ## Comprobar que todo funciona
 
@@ -50,9 +49,9 @@ muestra errores o cero resultados, hay que ajustar ese adaptador y su archivo de
 
 ## Sobre las licencias
 
-- Solo se muestran CC0 y CC-BY (y OFL/Apache en fuentes). Lo demás se descarta en el servidor.
-- CC-BY exige poner la atribución: usa el botón "Copiar atribución".
-- Google Fonts no indica la licencia de cada fuente por API: las marcamos como OFL (Roboto, como Apache 2.0). Mira la página de la fuente.
+- Solo se muestra CC0. CC BY, OFL, Apache, NC y SA se descartan en el servidor.
+- Por eso no hay pestaña de fuentes tipográficas (las libres son OFL/Apache, no CC0). El adaptador de Google Fonts sigue en el código, apagado.
+- Aun así, cada descarga lleva un `LICENCIA.txt` con el origen, por si quieres guardarlo.
 - La lista curada (`server/data/curated.json`) se escribió de memoria: comprueba la licencia en la página del pack antes de usarlo.
 - Esto es una ayuda, no asesoría legal.
 

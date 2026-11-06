@@ -14,7 +14,7 @@ function mk() {
   return { f, calls };
 }
 
-test('mapea sonidos libres; descarta NC y sampling+', async () => {
+test('mapea sonidos libres; descarta CC BY, NC y sampling+', async () => {
   const { f } = mk();
   const out = await createFreesoundAdapter(f, () => 'K').search('rain', 'audio', sig);
   assert.deepEqual(out.map((a) => a.id), ['freesound:101', 'freesound:102']);
@@ -39,14 +39,14 @@ test('campos vacíos → reservas y null', async () => {
   assert.equal(b.author, 'Desconocido');
   assert.equal(b.previewUrl, null);
   assert.equal(b.thumbnailUrl, null);
-  assert.equal(b.license, 'cc-by');
+  assert.equal(b.license, 'cc0');
 });
 
 test('filtra por licencia en la consulta y envía el token', async () => {
   const { f, calls } = mk();
   await createFreesoundAdapter(f, () => 'TOK').search('rain', 'audio', sig);
   const u = decodeURIComponent(calls[0].url.replace(/\+/g, ' '));
-  assert.ok(u.includes('Creative Commons 0') && u.includes('Attribution'));
+  assert.ok(u.includes('Creative Commons 0') && !u.includes('Attribution'));
   assert.ok(u.includes('query=rain'));
   assert.equal(calls[0].headers['authorization'], 'Token TOK');
 });

@@ -1,6 +1,7 @@
 {"total":4,"results":[
 {"ID":"abc1","Title":"Low poly tree","Attribution":"Low poly tree by Ana is licensed under CC0","Thumbnail":"https://static.poly.pizza/abc1.webp","Download":"https://static.poly.pizza/abc1.glb","Creator":{"Username":"Ana"},"Licence":"CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"},
-{"ID":"abc2","Title":"","Attribution":"","Thumbnail":"","Download":"","Creator":{"Username":""},"Licence":"CC-BY 3.0"},
+{"ID":"abc2","Title":"","Attribution":"","Thumbnail":"","Download":"","Creator":{"Username":""},"Licence":"CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"},
 {"ID":"abc3","Title":"NC model","Creator":{"Username":"Bo"},"Licence":"CC BY-NC 4.0","Thumbnail":"https://x/t.webp","Download":"https://x/m.glb"},
-{"ID":"abc4","Title":"Sin licencia","Creator":{"Username":"Cy"},"Thumbnail":"https://x/t.webp","Download":"https://x/m.glb"}
+{"ID":"abc4","Title":"Sin licencia","Creator":{"Username":"Cy"},"Thumbnail":"https://x/t.webp","Download":"https://x/m.glb"},
+{"ID":"abc5","Title":"Con atribución","Creator":{"Username":"Di"},"Thumbnail":"https://x/t.webp","Download":"https://x/m.glb","Licence":"CC-BY 3.0"}
 ]}

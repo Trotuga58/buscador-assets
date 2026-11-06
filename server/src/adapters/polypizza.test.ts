@@ -14,7 +14,7 @@ function mk() {
   return { f, calls };
 }
 
-test('mapea modelos a model3d con .glb y descarta licencias no libres o ausentes', async () => {
+test('mapea modelos a model3d con .glb y descarta todo lo que no sea CC0 (CC BY, NC, sin licencia)', async () => {
   const { f } = mk();
   const out = await createPolyPizzaAdapter(f, () => 'K').search('tree', 'model3d', sig);
   assert.deepEqual(out.map((a) => a.id), ['polypizza:abc1', 'polypizza:abc2']);
@@ -28,7 +28,7 @@ test('mapea modelos a model3d con .glb y descarta licencias no libres o ausentes
 test('campos vacíos usan valores de reserva y null', async () => {
   const { f } = mk();
   const b = (await createPolyPizzaAdapter(f, () => 'K').search('tree', 'model3d', sig))[1];
-  assert.equal(b.license, 'cc-by');
+  assert.equal(b.license, 'cc0');
   assert.equal(b.title, 'Sin título');
   assert.equal(b.author, 'Desconocido');
   assert.equal(b.thumbnailUrl, null);

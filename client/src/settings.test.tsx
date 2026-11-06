@@ -5,8 +5,8 @@ import { getSettings, saveSettings } from './api.ts';
 import { SettingsPanel } from './components/SettingsPanel.tsx';
 import { KEY_HELP } from './logic.ts';
 
-test('KEY_HELP cubre las cuatro claves con su enlace', () => {
-  assert.deepEqual(KEY_HELP.map((k) => k.name).sort(), ['FREESOUND_API_KEY', 'GOOGLE_FONTS_API_KEY', 'POLYPIZZA_API_KEY', 'SKETCHFAB_API_KEY']);
+test('KEY_HELP cubre las tres claves de las fuentes en uso con su enlace', () => {
+  assert.deepEqual(KEY_HELP.map((k) => k.name).sort(), ['FREESOUND_API_KEY', 'POLYPIZZA_API_KEY', 'SKETCHFAB_API_KEY']);
   assert.ok(KEY_HELP.every((k) => k.url.startsWith('https://') && k.label));
 });
 
@@ -23,7 +23,7 @@ test('getSettings / saveSettings: rutas, método y cuerpo', async () => {
 
 test('SettingsPanel: un campo de contraseña por clave, estado y enlace; nunca muestra valores', () => {
   const html = renderToStaticMarkup(<SettingsPanel status={{ FREESOUND_API_KEY: true }} onSave={async () => {}} />);
-  assert.equal((html.match(/type="password"/g) ?? []).length, 4);
+  assert.equal((html.match(/type="password"/g) ?? []).length, 3);
   assert.ok(html.includes('Freesound') && html.includes('configurada') && html.includes('sin configurar'));
   assert.ok(html.includes('https://freesound.org/apiv2/apply'));
   assert.ok(html.includes('Guardar claves'));

@@ -19,12 +19,12 @@ export function createOpenverseAdapter(fetchFn: FetchFn = fetch): Adapter {
     async search(query, type, signal) {
       const ep = ENDPOINT[type];
       if (!ep) return [];
-      const params = new URLSearchParams({ q: query, license: 'cc0,by', page_size: '20' });
+      const params = new URLSearchParams({ q: query, license: 'cc0', page_size: '20' });
       const data = await getJson<{ results?: OvItem[] }>(fetchFn, `https://api.openverse.org/v1/${ep.path}/?${params}`, signal);
       const out: Asset[] = [];
       for (const it of data.results ?? []) {
         const license = normalizeLicense(it.license);
-        if (!license || !it.url) continue;
+        if (license !== 'cc0' || !it.url) continue;
         out.push(makeAsset({
           id: it.id, type: ep.as, title: it.title, author: it.creator, license,
           licenseUrl: it.license_url ?? '', thumbnailUrl: it.thumbnail ?? null,

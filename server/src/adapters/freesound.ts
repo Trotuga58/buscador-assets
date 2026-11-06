@@ -16,7 +16,7 @@ export function createFreesoundAdapter(fetchFn: FetchFn = fetch, getKey = () => 
       if (type !== 'audio') return [];
       const params = new URLSearchParams({
         query, page_size: '20', fields: 'id,name,username,license,url,previews,images',
-        filter: 'license:("Creative Commons 0" OR "Attribution")',
+        filter: 'license:"Creative Commons 0"',
       });
       const data = await getJson<{ results?: FsItem[] }>(fetchFn, `https://freesound.org/apiv2/search/text/?${params}`, signal, {
         authorization: `Token ${getKey() ?? ''}`,
@@ -24,7 +24,7 @@ export function createFreesoundAdapter(fetchFn: FetchFn = fetch, getKey = () => 
       const out: Asset[] = [];
       for (const it of data.results ?? []) {
         const license = normalizeLicense(it.license);
-        if ((license !== 'cc0' && license !== 'cc-by') || !it.url) continue;
+        if (license !== 'cc0' || !it.url) continue;
         out.push(makeAsset({
           id: String(it.id), type: 'audio', title: it.name, author: it.username, license, licenseUrl: it.license ?? '',
           thumbnailUrl: it.images?.waveform_m ?? null,

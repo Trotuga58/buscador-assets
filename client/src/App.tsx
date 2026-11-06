@@ -110,10 +110,9 @@ export function App() {
             {data && <ResultGrid results={data.results} searched onOpen={setOpen} />}
             {!data && !loading && !error && (
               <section className="intro">
-                <p>Sprites pixel art, modelos 3D, sonidos y fuentes con licencia libre, listos para usar en tus juegos.</p>
+                <p>Sprites pixel art, modelos 3D y sonidos de dominio público, listos para usar en tus juegos.</p>
                 <p className="legend">
-                  <span className="badge" data-license="cc0">CC0</span> sin obligación de atribuir.{' '}
-                  <span className="badge" data-license="cc-by">CC BY</span> hay que atribuir: usa el botón Copiar atribución.
+                  Todo es <span className="badge" data-license="cc0">CC0</span>: sin licencia que cumplir, sin atribuir y con uso comercial permitido.
                 </p>
                 <p>Prueba con:</p>
                 <ul className="chips">

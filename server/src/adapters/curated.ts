@@ -11,7 +11,7 @@ const fold = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCa
 export function createCuratedAdapter(data: CuratedEntry[]): Adapter {
   const entries = data.flatMap((e) => {
     const license = normalizeLicense(e.license);
-    return license === 'cc0' || license === 'cc-by' ? [{ e, license, hay: fold([e.title, e.author, ...e.tags].join(' ')) }] : [];
+    return license === 'cc0' ? [{ e, license, hay: fold([e.title, e.author, ...e.tags].join(' ')) }] : [];
   });
 
   return {

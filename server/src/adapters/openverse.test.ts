@@ -12,7 +12,7 @@ function fakeFetch() {
   return { f, urls };
 }
 
-test('solo audio: mapea y descarta by-sa y by-nc', async () => {
+test('solo audio: mapea y descarta by, by-sa y by-nc', async () => {
   const { f } = fakeFetch();
   const out = await createOpenverseAdapter(f).search('calm', 'audio', sig);
   assert.deepEqual(out.map((a) => a.id), ['openverse:aud1', 'openverse:aud2']);
@@ -36,11 +36,11 @@ test('otros tipos (sprite) no se consultan', async () => {
   assert.equal(urls.length, 0);
 });
 
-test('pide solo licencias cc0 y by, en el endpoint de audio', async () => {
+test('pide solo licencia cc0, en el endpoint de audio', async () => {
   const { f, urls } = fakeFetch();
   await createOpenverseAdapter(f).search('tree', 'audio', sig);
   assert.match(urls[0], /\/audio\//);
-  assert.match(urls[0], /license=cc0(%2C|,)by/);
+  assert.match(urls[0], /license=cc0(&|$)/);
 });
 
 test('HTTP de error lanza', async () => {

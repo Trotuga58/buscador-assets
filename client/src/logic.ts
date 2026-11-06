@@ -5,7 +5,6 @@ export const TABS: Array<{ type: AssetType | 'all'; label: string }> = [
   { type: 'sprite', label: '2D' },
   { type: 'model3d', label: '3D' },
   { type: 'audio', label: 'Audio' },
-  { type: 'font', label: 'Fuentes' },
   { type: 'code', label: 'Código' },
 ];
 
@@ -43,7 +42,6 @@ export const KEY_HELP: Array<{ name: string; label: string; url: string }> = [
   { name: 'FREESOUND_API_KEY', label: 'Freesound (sonidos y música)', url: 'https://freesound.org/apiv2/apply' },
   { name: 'POLYPIZZA_API_KEY', label: 'Poly Pizza (modelos 3D)', url: 'https://poly.pizza' },
   { name: 'SKETCHFAB_API_KEY', label: 'Sketchfab (modelos 3D)', url: 'https://sketchfab.com/settings/password' },
-  { name: 'GOOGLE_FONTS_API_KEY', label: 'Google Fonts (fuentes)', url: 'https://developers.google.com/fonts/docs/developer_api' },
 ];
 
 /** Webs que no podemos consultar con garantías: se abren aparte y se revisa la licencia allí. */

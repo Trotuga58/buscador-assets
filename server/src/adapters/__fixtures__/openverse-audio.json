@@ -1,6 +1,7 @@
 {"result_count":4,"results":[
 {"id":"aud1","title":"Calm loop","creator":"Mo","license":"cc0","license_url":"https://creativecommons.org/publicdomain/zero/1.0/","url":"https://cdn.example/loop.mp3","thumbnail":"https://api.openverse.org/v1/audio/aud1/thumb/","foreign_landing_url":"https://example.org/loop"},
-{"id":"aud2","title":"","creator":null,"license":"by","license_url":"https://creativecommons.org/licenses/by/4.0/","url":"https://cdn.example/b.mp3","thumbnail":null,"foreign_landing_url":"https://example.org/b"},
+{"id":"aud2","title":"","creator":null,"license":"cc0","license_url":"https://creativecommons.org/publicdomain/zero/1.0/","url":"https://cdn.example/b.mp3","thumbnail":null,"foreign_landing_url":"https://example.org/b"},
 {"id":"aud3","title":"Share alike","creator":"Zed","license":"by-sa","license_url":"https://creativecommons.org/licenses/by-sa/4.0/","url":"https://cdn.example/c.mp3","thumbnail":null,"foreign_landing_url":"https://example.org/c"},
-{"id":"aud4","title":"No commercial","creator":"Yan","license":"by-nc","license_url":"https://creativecommons.org/licenses/by-nc/4.0/","url":"https://cdn.example/d.mp3","thumbnail":null,"foreign_landing_url":"https://example.org/d"}
+{"id":"aud4","title":"No commercial","creator":"Yan","license":"by-nc","license_url":"https://creativecommons.org/licenses/by-nc/4.0/","url":"https://cdn.example/d.mp3","thumbnail":null,"foreign_landing_url":"https://example.org/d"},
+{"id":"aud5","title":"Con atribución","creator":"Ky","license":"by","license_url":"https://creativecommons.org/licenses/by/4.0/","url":"https://cdn.example/e.mp3","thumbnail":null,"foreign_landing_url":"https://example.org/e"}
 ]}

@@ -82,15 +82,19 @@ test('se descartan licencias no permitidas y atribución vacía', async () => {
     asset({ id: 'vacia', attributionText: '  ' }),
     asset({ id: 'nc', license: 'cc-nc' as never }),
     asset({ id: 'ofl-sprite', license: 'ofl' }),
+    asset({ id: 'by', license: 'cc-by' }),
   ]);
   const r = await runSearch([a], 'q', 'sprite', await opts());
   assert.deepEqual(r.results.map((x) => x.id), ['ok']);
 });
 
-test('ofl y apache-2.0 solo valen para fuentes', async () => {
-  const f = fake('F', async () => [asset({ id: 'f1', type: 'font', license: 'ofl' }), asset({ id: 'f2', type: 'font', license: 'apache-2.0' })], { types: ['font'] });
+test('solo CC0: CC BY, OFL y Apache-2.0 se descartan, también en fuentes', async () => {
+  const f = fake('F', async () => [
+    asset({ id: 'f1', type: 'font', license: 'ofl' }), asset({ id: 'f2', type: 'font', license: 'apache-2.0' }),
+    asset({ id: 'f3', type: 'font', license: 'cc-by' }), asset({ id: 'f4', type: 'font', license: 'cc0' }),
+  ], { types: ['font'] });
   const r = await runSearch([f], 'roboto', 'font', await opts());
-  assert.deepEqual(r.results.map((x) => x.id), ['f1', 'f2']);
+  assert.deepEqual(r.results.map((x) => x.id), ['f4']);
 });
 
 test("type 'all' consulta cada tipo del adaptador; type concreto omite adaptadores que no lo soportan", async () => {
@@ -128,7 +132,7 @@ test('los adaptadores reciben la consulta traducida, salvo los bilingües', asyn
 });
 
 test("con type 'all' el 2D va primero, luego 3D, audio, fuentes y código", async () => {
-  const mk = (name: string, type: AssetType, id: string) => fake(name, async () => [asset({ id, type, license: type === 'font' ? 'ofl' : 'cc0' })], { types: [type] });
+  const mk = (name: string, type: AssetType, id: string) => fake(name, async () => [asset({ id, type, license: 'cc0' })], { types: [type] });
   const r = await runSearch([mk('F', 'font', 'f'), mk('A', 'audio', 'a'), mk('M', 'model3d', 'm'), mk('S', 'sprite', 's')], 'q', 'all', await opts());
   assert.deepEqual(r.results.map((x) => x.id), ['s', 'm', 'a', 'f']);
 });

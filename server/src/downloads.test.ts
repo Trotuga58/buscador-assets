@@ -7,9 +7,9 @@ import type { Asset } from '../../shared/types.ts';
 import { downloadAsset } from './downloads.ts';
 
 const asset = (o: Partial<Asset> = {}): Asset => ({
-  id: 'pp:1', type: 'model3d', title: 'Espada Épica', author: 'Ana', license: 'cc-by', licenseUrl: 'https://l/by',
+  id: 'pp:1', type: 'model3d', title: 'Espada Épica', author: 'Ana', license: 'cc0', licenseUrl: 'https://l/cc0',
   thumbnailUrl: null, previewUrl: null, sourceName: 'Poly Pizza', sourceUrl: 'https://s/1', downloadUrl: 'https://d.example/m/espada.glb',
-  attributionText: '"Espada" de Ana (CC BY)', ...o,
+  attributionText: '"Espada" de Ana (CC0)', ...o,
 });
 const bytes = new Uint8Array([1, 2, 3]);
 const ok = (async () => new Response(bytes, { headers: { 'content-length': '3' } })) as unknown as typeof fetch;
@@ -21,13 +21,14 @@ test('descarga el archivo y deja LICENCIA.txt al lado', async () => {
   assert.deepEqual(new Uint8Array(await readFile(r.file)), bytes);
   assert.equal(r.bytes, 3);
   const lic = await readFile(join(r.folder, 'LICENCIA.txt'), 'utf8');
-  for (const part of ['"Espada" de Ana (CC BY)', 'CC BY', 'https://l/by', 'https://s/1']) assert.ok(lic.includes(part), part);
+  for (const part of ['"Espada" de Ana (CC0)', 'CC0', 'https://l/cc0', 'https://s/1']) assert.ok(lic.includes(part), part);
 });
 
 test('rechaza lo que no se puede descargar con seguridad', async () => {
   const dir = await mkdtemp(join(tmpdir(), 'dl-'));
   await assert.rejects(downloadAsset(asset({ downloadUrl: null }), dir, { fetchFn: ok }), /descarga directa/);
   await assert.rejects(downloadAsset(asset({ downloadUrl: 'file:///etc/passwd' }), dir, { fetchFn: ok }), /no es un asset permitido/i);
+  await assert.rejects(downloadAsset(asset({ license: 'cc-by' }), dir, { fetchFn: ok }), /no es un asset permitido/i);
   await assert.rejects(downloadAsset(asset({ license: 'cc-by-nc' as never }), dir, { fetchFn: ok }), /no es un asset permitido/i);
   await assert.rejects(downloadAsset(asset(), dir, { fetchFn: (async () => new Response('x', { status: 404 })) as unknown as typeof fetch }), /404/);
 });

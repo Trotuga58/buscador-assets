@@ -15,7 +15,7 @@ const asset = (o: Partial<Asset> = {}): Asset => ({
 
 test('las pestañas piden los tipos esperados', () => {
   assert.deepEqual(TABS.map((t) => [t.label, t.type]), [
-    ['Todo', 'all'], ['2D', 'sprite'], ['3D', 'model3d'], ['Audio', 'audio'], ['Fuentes', 'font'], ['Código', 'code'],
+    ['Todo', 'all'], ['2D', 'sprite'], ['3D', 'model3d'], ['Audio', 'audio'], ['Código', 'code'],
   ]);
 });
 
