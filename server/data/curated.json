@@ -1,5 +1,308 @@
 [
  {
+  "title": "Pixel Adventure 1: personajes, enemigos y tiles",
+  "author": "Pixel Frog",
+  "type": "sprite",
+  "license": "CC BY 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://pixelfrog-assets.itch.io/pixel-adventure-1",
+  "tags": [
+   "pixel art",
+   "personajes",
+   "characters",
+   "enemigos",
+   "enemies",
+   "plataformas",
+   "platformer",
+   "animaciones",
+   "animations",
+   "tileset",
+   "trampas",
+   "traps",
+   "celeste",
+   "terraria",
+   "2D"
+  ]
+ },
+ {
+  "title": "Pixel Adventure 2: 20 enemigos animados",
+  "author": "Pixel Frog",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://pixelfrog-assets.itch.io/pixel-adventure-2",
+  "tags": [
+   "pixel art",
+   "enemigos",
+   "enemies",
+   "monstruos",
+   "monsters",
+   "jefes",
+   "bosses",
+   "animaciones",
+   "animations",
+   "plataformas",
+   "platformer",
+   "2D"
+  ]
+ },
+ {
+  "title": "Treasure Hunters: piratas, tiles e interfaz",
+  "author": "Pixel Frog",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://pixelfrog-assets.itch.io/treasure-hunters",
+  "tags": [
+   "pixel art",
+   "personajes",
+   "characters",
+   "piratas",
+   "pirates",
+   "tesoro",
+   "treasure",
+   "interfaz",
+   "ui",
+   "tileset",
+   "plataformas",
+   "platformer",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kings and Pigs: rey, cerdos y tiles",
+  "author": "Pixel Frog",
+  "type": "sprite",
+  "license": "CC BY 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://pixelfrog-assets.itch.io/kings-and-pigs",
+  "tags": [
+   "pixel art",
+   "personajes",
+   "characters",
+   "enemigos",
+   "enemies",
+   "rey",
+   "king",
+   "cerdos",
+   "pigs",
+   "tileset",
+   "plataformas",
+   "platformer",
+   "metroidvania",
+   "celeste",
+   "2D"
+  ]
+ },
+ {
+  "title": "Sunny Land: plataformas 16 bits",
+  "author": "Ansimuz",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://ansimuz.itch.io/sunny-land-pixel-game-art",
+  "tags": [
+   "pixel art",
+   "personajes",
+   "characters",
+   "enemigos",
+   "enemies",
+   "plataformas",
+   "platformer",
+   "tileset",
+   "animaciones",
+   "animations",
+   "16 bits",
+   "celeste",
+   "terraria",
+   "2D"
+  ]
+ },
+ {
+  "title": "Gothicvania Cemetery: castlevania",
+  "author": "Ansimuz",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://opengameart.org/content/gothicvania-cemetery-pack",
+  "tags": [
+   "pixel art",
+   "personajes",
+   "characters",
+   "enemigos",
+   "enemies",
+   "gotico",
+   "gothic",
+   "terror",
+   "horror",
+   "cementerio",
+   "graveyard",
+   "fondos",
+   "backgrounds",
+   "metroidvania",
+   "plataformas",
+   "platformer",
+   "2D"
+  ]
+ },
+ {
+  "title": "Gothicvania: colección de monstruos y héroes",
+  "author": "Ansimuz",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://opengameart.org/content/gothicvania-patreons-collection",
+  "tags": [
+   "pixel art",
+   "personajes",
+   "characters",
+   "heroe",
+   "hero",
+   "enemigos",
+   "enemies",
+   "monstruos",
+   "monsters",
+   "gotico",
+   "gothic",
+   "fondos",
+   "backgrounds",
+   "metroidvania",
+   "2D"
+  ]
+ },
+ {
+  "title": "Brackeys Platformer Bundle: caballero, slime, tiles, sonidos",
+  "author": "Brackeys",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://brackeysgames.itch.io/brackeys-platformer-bundle",
+  "tags": [
+   "pixel art",
+   "personajes",
+   "characters",
+   "caballero",
+   "knight",
+   "slime",
+   "enemigos",
+   "enemies",
+   "tileset",
+   "monedas",
+   "coins",
+   "musica",
+   "music",
+   "sonidos",
+   "sounds",
+   "fuentes",
+   "fonts",
+   "plataformas",
+   "platformer",
+   "celeste",
+   "terraria",
+   "principiantes",
+   "beginners",
+   "2D"
+  ]
+ },
+ {
+  "title": "DungeonTileset II: héroes y monstruos de mazmorra",
+  "author": "0x72",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://0x72.itch.io/dungeontileset-ii",
+  "tags": [
+   "pixel art",
+   "16x16",
+   "personajes",
+   "characters",
+   "heroes",
+   "enemigos",
+   "enemies",
+   "monstruos",
+   "monsters",
+   "mazmorra",
+   "dungeon",
+   "tileset",
+   "animaciones",
+   "animations",
+   "rpg",
+   "undertale",
+   "terraria",
+   "2D"
+  ]
+ },
+ {
+  "title": "Paper Pixels: plataformas 8x8",
+  "author": "VEXED",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://v3x3d.itch.io/Paper-Pixels",
+  "tags": [
+   "pixel art",
+   "8x8",
+   "personajes",
+   "characters",
+   "enemigos",
+   "enemies",
+   "plataformas",
+   "platformer",
+   "tileset",
+   "minimalista",
+   "minimalist",
+   "celeste",
+   "2D"
+  ]
+ },
+ {
+  "title": "Personajes base 16x16 para RPG top-down",
+  "author": "OpenGameArt",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://opengameart.org/node/139591",
+  "tags": [
+   "pixel art",
+   "16x16",
+   "32x32",
+   "personajes",
+   "characters",
+   "rpg",
+   "top down",
+   "jrpg",
+   "ocho direcciones",
+   "spritesheet",
+   "undertale",
+   "2D"
+  ]
+ },
+ {
+  "title": "Generic Platformer Pack: 16 bits",
+  "author": "OpenGameArt",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://opengameart.org/content/generic-platformer-pack",
+  "tags": [
+   "pixel art",
+   "16 bits",
+   "personajes",
+   "characters",
+   "enemigos",
+   "enemies",
+   "plataformas",
+   "platformer",
+   "tileset",
+   "animaciones",
+   "animations",
+   "snes",
+   "nes",
+   "celeste",
+   "2D"
+  ]
+ },
+ {
   "title": "Kenney Platformer Pack Redux",
   "author": "Kenney",
   "type": "sprite",
@@ -29,7 +332,11 @@
    "platformer",
    "tileset",
    "personajes",
-   "2D"
+   "2D",
+   "personajes",
+   "characters",
+   "celeste",
+   "terraria"
   ]
  },
  {
@@ -45,7 +352,11 @@
    "pixel art",
    "tileset",
    "rpg",
-   "2D"
+   "2D",
+   "undertale",
+   "personajes",
+   "characters",
+   "heroes"
   ]
  },
  {
@@ -63,7 +374,10 @@
    "rpg",
    "casas",
    "houses",
-   "2D"
+   "2D",
+   "undertale",
+   "personajes",
+   "characters"
   ]
  },
  {
@@ -80,7 +394,11 @@
    "rpg",
    "mazmorra",
    "dungeon",
-   "2D"
+   "2D",
+   "undertale",
+   "personajes",
+   "characters",
+   "heroes"
   ]
  },
  {
@@ -114,7 +432,11 @@
    "rpg",
    "pixel art",
    "heroes",
-   "2D"
+   "2D",
+   "undertale",
+   "personajes",
+   "characters",
+   "heroes"
   ]
  },
  {

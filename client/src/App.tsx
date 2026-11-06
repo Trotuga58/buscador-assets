@@ -1,7 +1,8 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import type { Asset, AssetType, SearchResponse } from '../../shared/types.ts';
 import { addFavorite, getSettings, listFavorites, removeFavorite, saveSettings, search } from './api.ts';
-import { EXAMPLES, TABS } from './logic.ts';
+import { DEFAULT_TYPE, EXAMPLES, TABS } from './logic.ts';
+import { QuickFilters } from './components/QuickFilters.tsx';
 import { ExternalSearch } from './components/ExternalSearch.tsx';
 import { SettingsPanel } from './components/SettingsPanel.tsx';
 import { Favorites } from './components/Favorites.tsx';
@@ -10,7 +11,7 @@ import { SourceStatusBar } from './components/SourceStatusBar.tsx';
 
 export function App() {
   const [query, setQuery] = useState('');
-  const [type, setType] = useState<AssetType | 'all'>('all');
+  const [type, setType] = useState<AssetType | 'all'>(DEFAULT_TYPE);
   const [data, setData] = useState<SearchResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -49,6 +50,7 @@ export function App() {
   const onSubmit = (e: FormEvent) => { e.preventDefault(); void run(query, type); };
   const pick = (t: AssetType | 'all') => { setType(t); void run(query, t); };
   const example = (q: string) => { setQuery(q); void run(q, type); };
+  const quick = (q: string) => { setQuery(q); void run(q, 'sprite'); };
   const toggle = (p: 'favorites' | 'settings') => setPanel((cur) => (cur === p ? null : p));
 
   return (
@@ -76,6 +78,8 @@ export function App() {
           ))}
         </div>
 
+        {type === 'sprite' && <QuickFilters onPick={quick} />}
+
         {panel === 'settings' && <SettingsPanel status={keyStatus} onSave={async (k) => { setKeyStatus(await saveSettings(k)); }} />}
         {panel === 'favorites' && <Favorites items={favorites} onToggle={toggleFavorite} />}
 
@@ -88,7 +92,7 @@ export function App() {
             {data && <ResultGrid results={data.results} searched favoriteIds={new Set(favorites.map((f) => f.id))} onToggleFavorite={toggleFavorite} />}
             {!data && !loading && !error && (
               <section className="intro">
-                <p>Modelos 3D, sprites, sonidos y fuentes con licencia libre, listos para usar en tus juegos.</p>
+                <p>Sprites pixel art, modelos 3D, sonidos y fuentes con licencia libre, listos para usar en tus juegos.</p>
                 <p className="legend">
                   <span className="badge" data-license="cc0">CC0</span> sin obligación de atribuir.{' '}
                   <span className="badge" data-license="cc-by">CC BY</span> hay que atribuir: usa el botón Copiar atribución.

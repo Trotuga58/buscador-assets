@@ -2,8 +2,8 @@ import type { AssetType, License, SourceStatus } from '../../shared/types.ts';
 
 export const TABS: Array<{ type: AssetType | 'all'; label: string }> = [
   { type: 'all', label: 'Todo' },
-  { type: 'model3d', label: '3D' },
   { type: 'sprite', label: '2D' },
+  { type: 'model3d', label: '3D' },
   { type: 'audio', label: 'Audio' },
   { type: 'font', label: 'Fuentes' },
   { type: 'code', label: 'Código' },
@@ -70,7 +70,19 @@ const LICENSE_NOTE: Record<License, string> = {
 };
 export const licenseNote = (l: License): string => LICENSE_NOTE[l];
 
-export const EXAMPLES = ['árbol', 'mazmorra', 'espada', 'música épica', 'botones'];
+export const EXAMPLES = ['personajes pixel art', 'mazmorra', 'plataformas', 'espada', 'música épica'];
 
 /** Pictograma que ocupa el lugar de la miniatura cuando la fuente no la da. */
 export const TYPE_GLYPH: Record<AssetType, string> = { model3d: '3D', sprite: '2D', audio: '♪', font: 'Aa', code: '</>' };
+
+export const DEFAULT_TYPE: AssetType | 'all' = 'sprite';
+
+/** Atajos del 2D: pixel art para juegos tipo plataformas o RPG. */
+export const SPRITE_FILTERS: Array<{ label: string; query: string }> = [
+  { label: 'Personajes', query: 'personajes pixel art' },
+  { label: 'Enemigos', query: 'enemigos pixel art' },
+  { label: 'Tilesets', query: 'tileset pixel art' },
+  { label: 'Interfaz', query: 'interfaz botones' },
+  { label: 'Fondos', query: 'fondos pixel art' },
+  { label: 'Efectos', query: 'efectos particulas' },
+];

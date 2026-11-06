@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { renderToStaticMarkup } from 'react-dom/server';
 import type { Asset } from '../../shared/types.ts';
-import { TABS, sourceMessage, licenseLabel, licenseNote } from './logic.ts';
+import { TABS, DEFAULT_TYPE, SPRITE_FILTERS, sourceMessage, licenseLabel, licenseNote } from './logic.ts';
 import { search } from './api.ts';
 import { ResultGrid } from './components/ResultGrid.tsx';
 import { SourceStatusBar } from './components/SourceStatusBar.tsx';
@@ -15,7 +15,7 @@ const asset = (o: Partial<Asset> = {}): Asset => ({
 
 test('las pestañas piden los tipos esperados', () => {
   assert.deepEqual(TABS.map((t) => [t.label, t.type]), [
-    ['Todo', 'all'], ['3D', 'model3d'], ['2D', 'sprite'], ['Audio', 'audio'], ['Fuentes', 'font'], ['Código', 'code'],
+    ['Todo', 'all'], ['2D', 'sprite'], ['3D', 'model3d'], ['Audio', 'audio'], ['Fuentes', 'font'], ['Código', 'code'],
   ]);
 });
 
@@ -74,4 +74,11 @@ test('sin miniatura el marcador muestra el pictograma del tipo', () => {
   const html = renderToStaticMarkup(<ResultGrid results={[asset({ thumbnailUrl: null, type: 'audio', previewUrl: null })]} searched />);
   assert.ok(html.includes('♪') && html.includes('aria-label="Sin miniatura"'));
   assert.ok(renderToStaticMarkup(<ResultGrid results={[asset({ thumbnailUrl: null, type: 'font' })]} searched />).includes('Aa'));
+});
+
+test('el 2D es la pestaña por defecto y tiene filtros rápidos de pixel art', () => {
+  assert.equal(DEFAULT_TYPE, 'sprite');
+  const labels = SPRITE_FILTERS.map((f) => f.label);
+  for (const l of ['Personajes', 'Enemigos', 'Tilesets', 'Interfaz', 'Fondos', 'Efectos']) assert.ok(labels.includes(l), l);
+  assert.ok(SPRITE_FILTERS.every((f) => f.query.includes('pixel art') || f.label === 'Interfaz' || f.label === 'Efectos'));
 });

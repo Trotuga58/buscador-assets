@@ -58,3 +58,11 @@ test('la palabra debe empezar una palabra de la entrada (tree no encuentra stree
   assert.equal((await a.search('tree', 'model3d', sig)).length, 0);
   assert.equal((await a.search('street', 'model3d', sig)).length, 1);
 });
+
+test('curated.json: hay muchos packs de personajes pixel art y salen primero', async () => {
+  const real = JSON.parse(readFileSync(new URL('../../data/curated.json', import.meta.url), 'utf8')) as CuratedEntry[];
+  const out = await createCuratedAdapter(real).search('personajes pixel art', 'sprite', sig);
+  assert.ok(out.length >= 8, `solo ${out.length}`);
+  assert.ok(out.slice(0, 5).every((a) => /pixel|kings|sunny|brackeys|gothicvania|0x72|16x16/i.test(a.title + a.sourceUrl)));
+  for (const q of ['celeste', 'terraria', 'undertale']) assert.ok((await createCuratedAdapter(real).search(q, 'sprite', sig)).length >= 3, q);
+});

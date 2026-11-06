@@ -126,3 +126,9 @@ test('los adaptadores reciben la consulta traducida, salvo los bilingües', asyn
   assert.equal(seen.api, 'sword epic');
   assert.equal(seen.curada, 'Espada épica');
 });
+
+test("con type 'all' el 2D va primero, luego 3D, audio, fuentes y código", async () => {
+  const mk = (name: string, type: AssetType, id: string) => fake(name, async () => [asset({ id, type, license: type === 'font' ? 'ofl' : 'cc0' })], { types: [type] });
+  const r = await runSearch([mk('F', 'font', 'f'), mk('A', 'audio', 'a'), mk('M', 'model3d', 'm'), mk('S', 'sprite', 's')], 'q', 'all', await opts());
+  assert.deepEqual(r.results.map((x) => x.id), ['s', 'm', 'a', 'f']);
+});

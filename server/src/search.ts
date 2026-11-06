@@ -21,6 +21,8 @@ export function isAllowed(a: Asset): boolean {
   return a.type === 'font' && (a.license === 'ofl' || a.license === 'apache-2.0');
 }
 
+const TYPE_ORDER: Record<string, number> = { sprite: 0, model3d: 1, audio: 2, font: 3, code: 4 };
+
 class TimeoutError extends Error {}
 
 async function withTimeout<T>(run: (signal: AbortSignal) => Promise<T>, ms: number): Promise<T> {
@@ -72,5 +74,6 @@ export async function runSearch(
 
   const order = new Map(adapters.map((a, i) => [a.name, i]));
   sources.sort((a, b) => order.get(a.source)! - order.get(b.source)!);
+  results.sort((a, b) => (TYPE_ORDER[a.type] ?? 9) - (TYPE_ORDER[b.type] ?? 9)); // 2D primero; el orden dentro de cada tipo se conserva
   return { results, sources };
 }
