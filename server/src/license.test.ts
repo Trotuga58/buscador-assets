@@ -33,3 +33,12 @@ test('buildAttribution con CC0 sigue dando texto con autor y fuente', () => {
   const t = buildAttribution({ title: 'X', author: 'Bo', license: 'cc0', sourceName: 'Kenney', sourceUrl: 'https://k.nl' });
   assert.ok(t.includes('Bo') && t.includes('Kenney') && t.includes('CC0'));
 });
+
+test('normalizeLicense: URLs de licencia (Freesound)', () => {
+  assert.equal(normalizeLicense('http://creativecommons.org/publicdomain/zero/1.0/'), 'cc0');
+  assert.equal(normalizeLicense('http://creativecommons.org/licenses/by/4.0/'), 'cc-by');
+  assert.equal(normalizeLicense('http://creativecommons.org/licenses/by/3.0/'), 'cc-by');
+  for (const u of ['http://creativecommons.org/licenses/by-nc/3.0/', 'http://creativecommons.org/licenses/sampling+/1.0/', 'http://creativecommons.org/licenses/by-sa/4.0/']) {
+    assert.equal(normalizeLicense(u), null, u);
+  }
+});

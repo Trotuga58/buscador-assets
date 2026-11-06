@@ -1,0 +1,6 @@
+{"count":4,"results":[
+{"id":101,"name":"rain.wav","username":"sam","license":"http://creativecommons.org/publicdomain/zero/1.0/","url":"https://freesound.org/people/sam/sounds/101/","previews":{"preview-hq-mp3":"https://cdn.freesound.org/previews/101_hq.mp3","preview-lq-mp3":"https://cdn.freesound.org/previews/101_lq.mp3"},"images":{"waveform_m":"https://cdn.freesound.org/displays/101_m.png"}},
+{"id":102,"name":"","username":"","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://freesound.org/people/x/sounds/102/","previews":{},"images":{}},
+{"id":103,"name":"nc","username":"nn","license":"http://creativecommons.org/licenses/by-nc/3.0/","url":"https://freesound.org/people/nn/sounds/103/","previews":{"preview-hq-mp3":"https://cdn/103.mp3"},"images":{}},
+{"id":104,"name":"sampling","username":"ss","license":"http://creativecommons.org/licenses/sampling+/1.0/","url":"https://freesound.org/people/ss/sounds/104/","previews":{},"images":{}}
+]}

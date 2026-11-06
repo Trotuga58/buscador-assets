@@ -8,6 +8,7 @@ export function normalizeLicense(raw: string | null | undefined): 'cc0' | 'cc-by
   if (/(^|[^a-z])(nc|nd|sa)([^a-z]|$)/.test(s) || s.includes('noncommercial') || s.includes('sharealike') || s.includes('noderiv')) {
     return null;
   }
+  if (/creativecommons\.org\/licenses\/by\/[\d.]+/.test(s)) return 'cc-by';
   if (s === 'cc0' || s.startsWith('cc0') || s.includes('creative-commons-0') || s.includes('publicdomain/zero') || s.includes('zero')) {
     return 'cc0';
   }
