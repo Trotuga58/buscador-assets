@@ -45,3 +45,19 @@ export const KEY_HELP: Array<{ name: string; label: string; url: string }> = [
   { name: 'SKETCHFAB_API_KEY', label: 'Sketchfab (modelos 3D)', url: 'https://sketchfab.com/settings/password' },
   { name: 'GOOGLE_FONTS_API_KEY', label: 'Google Fonts (fuentes)', url: 'https://developers.google.com/fonts/docs/developer_api' },
 ];
+
+/** Webs que no podemos consultar con garantías: se abren aparte y se revisa la licencia allí. */
+export function externalLinks(query: string, type: AssetType | 'all'): Array<{ label: string; url: string }> {
+  const q = encodeURIComponent(query.trim());
+  if (!query.trim()) return [];
+  const oga = (artType: number, label: string) => ({
+    label: `OpenGameArt: ${label}`,
+    url: `https://opengameart.org/art-search-advanced?keys=${q}&field_art_type_tid%5B%5D=${artType}&sort_by=count&sort_order=DESC`,
+  });
+  const itch = { label: 'itch.io: assets gratis para juegos', url: `https://itch.io/game-assets/free?q=${q}` };
+  if (type === 'sprite') return [oga(9, 'arte 2D'), itch];
+  if (type === 'model3d') return [oga(10, 'arte 3D'), itch];
+  if (type === 'audio') return [oga(12, 'música'), oga(13, 'efectos de sonido')];
+  if (type === 'all') return [oga(9, '2D'), oga(10, '3D'), itch];
+  return [];
+}

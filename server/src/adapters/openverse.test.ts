@@ -3,54 +3,47 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createOpenverseAdapter } from './openverse.ts';
 
-const fx = (n: string) => JSON.parse(readFileSync(new URL(`./__fixtures__/${n}.json`, import.meta.url), 'utf8'));
+const fx = JSON.parse(readFileSync(new URL('./__fixtures__/openverse-audio.json', import.meta.url), 'utf8'));
 const sig = new AbortController().signal;
 
-function fakeFetch(map: Record<string, unknown>) {
+function fakeFetch() {
   const urls: string[] = [];
-  const f = (async (url: string) => {
-    urls.push(url);
-    const key = Object.keys(map).find((k) => url.includes(k))!;
-    return new Response(JSON.stringify(map[key]), { status: 200 });
-  }) as unknown as typeof fetch;
+  const f = (async (url: string) => { urls.push(url); return new Response(JSON.stringify(fx), { status: 200 }); }) as unknown as typeof fetch;
   return { f, urls };
 }
 
-test('imágenes → sprite, descarta by-sa y by-nc', async () => {
-  const { f } = fakeFetch({ '/images/': fx('openverse-images') });
-  const out = await createOpenverseAdapter(f).search('tree', 'sprite', sig);
-  assert.deepEqual(out.map((a) => a.id), ['openverse:img1', 'openverse:img2']);
-  assert.equal(out[0].type, 'sprite');
+test('solo audio: mapea y descarta by-sa y by-nc', async () => {
+  const { f } = fakeFetch();
+  const out = await createOpenverseAdapter(f).search('calm', 'audio', sig);
+  assert.deepEqual(out.map((a) => a.id), ['openverse:aud1', 'openverse:aud2']);
+  assert.equal(out[0].type, 'audio');
   assert.equal(out[0].license, 'cc0');
-  assert.equal(out[0].licenseUrl, 'https://creativecommons.org/publicdomain/zero/1.0/');
-  assert.equal(out[0].sourceUrl, 'https://example.org/tree');
-  assert.equal(out[0].previewUrl, 'https://cdn.example/tree.png');
+  assert.equal(out[0].previewUrl, 'https://cdn.example/loop.mp3');
+  assert.equal(out[0].sourceUrl, 'https://example.org/loop');
 });
 
 test('título vacío → Sin título; autor ausente → Desconocido; miniatura ausente → null', async () => {
-  const { f } = fakeFetch({ '/images/': fx('openverse-images') });
-  const b = (await createOpenverseAdapter(f).search('x', 'sprite', sig))[1];
+  const { f } = fakeFetch();
+  const b = (await createOpenverseAdapter(f).search('x', 'audio', sig))[1];
   assert.equal(b.title, 'Sin título');
   assert.equal(b.author, 'Desconocido');
   assert.equal(b.thumbnailUrl, null);
-  assert.ok(b.attributionText.includes('Desconocido'));
 });
 
-test('audio → type audio con previewUrl', async () => {
-  const { f } = fakeFetch({ '/audio/': fx('openverse-audio') });
-  const out = await createOpenverseAdapter(f).search('calm', 'audio', sig);
-  assert.equal(out[0].type, 'audio');
-  assert.equal(out[0].previewUrl, 'https://cdn.example/loop.mp3');
+test('otros tipos (sprite) no se consultan', async () => {
+  const { f, urls } = fakeFetch();
+  assert.deepEqual(await createOpenverseAdapter(f).search('tree', 'sprite', sig), []);
+  assert.equal(urls.length, 0);
 });
 
-test('pide solo licencias cc0 y by', async () => {
-  const { f, urls } = fakeFetch({ '/images/': fx('openverse-images') });
-  await createOpenverseAdapter(f).search('tree', 'sprite', sig);
+test('pide solo licencias cc0 y by, en el endpoint de audio', async () => {
+  const { f, urls } = fakeFetch();
+  await createOpenverseAdapter(f).search('tree', 'audio', sig);
+  assert.match(urls[0], /\/audio\//);
   assert.match(urls[0], /license=cc0(%2C|,)by/);
-  assert.match(urls[0], /q=tree/);
 });
 
 test('HTTP de error lanza', async () => {
   const f = (async () => new Response('x', { status: 429 })) as unknown as typeof fetch;
-  await assert.rejects(createOpenverseAdapter(f).search('x', 'sprite', sig), /429/);
+  await assert.rejects(createOpenverseAdapter(f).search('x', 'audio', sig), /429/);
 });

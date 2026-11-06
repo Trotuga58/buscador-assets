@@ -52,3 +52,9 @@ test('curated.json real: ≥10 entradas y todas con licencia válida', () => {
     assert.equal(total.length, real.length);
   });
 });
+
+test('la palabra debe empezar una palabra de la entrada (tree no encuentra streets)', async () => {
+  const a = createCuratedAdapter([{ title: 'Calles', author: 'K', type: 'model3d', license: 'cc0', licenseUrl: '', url: 'https://k', tags: ['streets'] }]);
+  assert.equal((await a.search('tree', 'model3d', sig)).length, 0);
+  assert.equal((await a.search('street', 'model3d', sig)).length, 1);
+});

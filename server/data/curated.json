@@ -8,37 +8,12 @@
   "url": "https://kenney.nl/assets/platformer-pack-redux",
   "tags": [
    "plataformas",
-   "2D",
+   "platformer",
    "personajes",
-   "tiles"
-  ]
- },
- {
-  "title": "Kenney Tiny Dungeon",
-  "author": "Kenney",
-  "type": "sprite",
-  "license": "CC0 1.0",
-  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "url": "https://kenney.nl/assets/tiny-dungeon",
-  "tags": [
-   "mazmorra",
-   "pixel art",
-   "tileset",
+   "characters",
+   "tiles",
+   "sprites",
    "2D"
-  ]
- },
- {
-  "title": "Kenney UI Pack",
-  "author": "Kenney",
-  "type": "sprite",
-  "license": "CC0 1.0",
-  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "url": "https://kenney.nl/assets/ui-pack",
-  "tags": [
-   "interfaz",
-   "UI",
-   "botones",
-   "menus"
   ]
  },
  {
@@ -51,50 +26,425 @@
   "tags": [
    "pixel art",
    "plataformas",
+   "platformer",
+   "tileset",
+   "personajes",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kenney Tiny Dungeon",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/tiny-dungeon",
+  "tags": [
+   "mazmorra",
+   "dungeon",
+   "pixel art",
+   "tileset",
+   "rpg",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kenney Tiny Town",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/tiny-town",
+  "tags": [
+   "pueblo",
+   "town",
+   "pixel art",
+   "tileset",
+   "rpg",
+   "casas",
+   "houses",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kenney 1-Bit Pack",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/1-bit-pack",
+  "tags": [
+   "1 bit",
+   "pixel art",
+   "tileset",
+   "rpg",
+   "mazmorra",
+   "dungeon",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kenney Roguelike RPG Pack",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/roguelike-rpg-pack",
+  "tags": [
+   "rpg",
+   "roguelike",
+   "tileset",
+   "mazmorra",
+   "dungeon",
+   "bosque",
+   "forest",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kenney Roguelike Characters",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/roguelike-characters",
+  "tags": [
+   "personajes",
+   "characters",
+   "rpg",
+   "pixel art",
+   "heroes",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kenney Roguelike Caves & Dungeons",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/roguelike-caves-dungeons",
+  "tags": [
+   "cueva",
+   "cave",
+   "mazmorra",
+   "dungeon",
    "tileset",
    "2D"
   ]
  },
  {
-  "title": "Kenney Interface Sounds",
+  "title": "Kenney RPG Urban Pack",
   "author": "Kenney",
-  "type": "audio",
+  "type": "sprite",
   "license": "CC0 1.0",
   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "url": "https://kenney.nl/assets/interface-sounds",
+  "url": "https://kenney.nl/assets/rpg-urban-pack",
+  "tags": [
+   "ciudad",
+   "city",
+   "urbano",
+   "tileset",
+   "coches",
+   "cars",
+   "top down",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kenney Toon Characters 1",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/toon-characters-1",
+  "tags": [
+   "personajes",
+   "characters",
+   "dibujos",
+   "cartoon",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kenney Animal Pack Redux",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/animal-pack-redux",
+  "tags": [
+   "animales",
+   "animals",
+   "perro",
+   "dog",
+   "gato",
+   "cat",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kenney Space Shooter Redux",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/space-shooter-redux",
+  "tags": [
+   "espacio",
+   "space",
+   "naves",
+   "spaceship",
+   "disparos",
+   "shooter",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kenney Top-down Shooter",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/top-down-shooter",
+  "tags": [
+   "disparos",
+   "shooter",
+   "top down",
+   "personajes",
+   "zombi",
+   "zombie",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kenney Background Elements Redux",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/background-elements-redux",
+  "tags": [
+   "fondo",
+   "background",
+   "nubes",
+   "clouds",
+   "arboles",
+   "trees",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kenney Jumper Pack",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/jumper-pack",
+  "tags": [
+   "salto",
+   "jump",
+   "plataformas",
+   "platformer",
+   "movil",
+   "mobile",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kenney Puzzle Pack",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/puzzle-pack",
+  "tags": [
+   "puzzle",
+   "rompecabezas",
+   "bolas",
+   "balls",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kenney Particle Pack",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/particle-pack",
+  "tags": [
+   "particulas",
+   "particles",
+   "efectos",
+   "effects",
+   "humo",
+   "smoke",
+   "fuego",
+   "fire",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kenney Game Icons",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/game-icons",
+  "tags": [
+   "iconos",
+   "icons",
+   "interfaz",
+   "ui",
+   "botones",
+   "buttons",
+   "2D"
+  ]
+ },
+ {
+  "title": "Kenney Board Game Icons",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/board-game-icons",
+  "tags": [
+   "iconos",
+   "icons",
+   "juego de mesa",
+   "board game",
+   "fichas",
+   "pieces",
+   "dados",
+   "dice"
+  ]
+ },
+ {
+  "title": "Kenney Input Prompts",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/input-prompts",
+  "tags": [
+   "mando",
+   "gamepad",
+   "teclado",
+   "keyboard",
+   "botones",
+   "buttons",
+   "controles",
+   "controls",
+   "iconos",
+   "icons"
+  ]
+ },
+ {
+  "title": "Kenney UI Pack",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/ui-pack",
   "tags": [
    "interfaz",
-   "clic",
-   "efectos",
-   "sonidos"
+   "ui",
+   "botones",
+   "buttons",
+   "menus",
+   "menu",
+   "paneles",
+   "panels",
+   "2D"
   ]
  },
  {
-  "title": "Kenney Impact Sounds",
+  "title": "Kenney UI Pack - Pixel Adventure",
   "author": "Kenney",
-  "type": "audio",
+  "type": "sprite",
   "license": "CC0 1.0",
   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "url": "https://kenney.nl/assets/impact-sounds",
+  "url": "https://kenney.nl/assets/ui-pack-pixel-adventure",
   "tags": [
-   "golpes",
-   "impactos",
-   "efectos",
-   "sonidos"
+   "interfaz",
+   "ui",
+   "pixel art",
+   "botones",
+   "buttons",
+   "rpg",
+   "menu"
   ]
  },
  {
-  "title": "Kenney Digital Audio",
+  "title": "Kenney UI Pack - Sci-fi",
   "author": "Kenney",
-  "type": "audio",
+  "type": "sprite",
   "license": "CC0 1.0",
   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "url": "https://kenney.nl/assets/digital-audio",
+  "url": "https://kenney.nl/assets/ui-pack-sci-fi",
   "tags": [
-   "retro",
-   "efectos",
-   "sonidos",
-   "laser"
+   "interfaz",
+   "ui",
+   "ciencia ficcion",
+   "sci-fi",
+   "botones",
+   "buttons",
+   "paneles",
+   "panels"
+  ]
+ },
+ {
+  "title": "Kenney Fonts",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/kenney-fonts",
+  "tags": [
+   "fuentes",
+   "fonts",
+   "letras",
+   "pixel",
+   "tipografia",
+   "typography"
+  ]
+ },
+ {
+  "title": "Kenney Prototype Textures",
+  "author": "Kenney",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/prototype-textures",
+  "tags": [
+   "texturas",
+   "textures",
+   "prototipo",
+   "prototype",
+   "niveles",
+   "level design",
+   "cuadricula",
+   "grid"
+  ]
+ },
+ {
+  "title": "0x72 DungeonTileset II",
+  "author": "0x72",
+  "type": "sprite",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://0x72.itch.io/dungeontileset-ii",
+  "tags": [
+   "mazmorra",
+   "dungeon",
+   "pixel art",
+   "tileset",
+   "personajes",
+   "characters",
+   "enemigos",
+   "enemies",
+   "2D"
   ]
  },
  {
@@ -106,8 +456,13 @@
   "url": "https://kenney.nl/assets/nature-kit",
   "tags": [
    "arboles",
+   "trees",
    "naturaleza",
+   "nature",
    "rocas",
+   "rocks",
+   "bosque",
+   "forest",
    "3D"
   ]
  },
@@ -120,8 +475,14 @@
   "url": "https://kenney.nl/assets/furniture-kit",
   "tags": [
    "muebles",
+   "furniture",
    "interior",
    "casa",
+   "house",
+   "silla",
+   "chair",
+   "mesa",
+   "table",
    "3D"
   ]
  },
@@ -134,9 +495,231 @@
   "url": "https://kenney.nl/assets/space-kit",
   "tags": [
    "espacio",
+   "space",
    "naves",
+   "spaceship",
+   "ciencia ficcion",
+   "sci-fi",
+   "3D"
+  ]
+ },
+ {
+  "title": "Kenney City Kit (Commercial)",
+  "author": "Kenney",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/city-kit-commercial",
+  "tags": [
+   "ciudad",
+   "city",
+   "edificios",
+   "buildings",
+   "3D"
+  ]
+ },
+ {
+  "title": "Kenney City Kit (Suburban)",
+  "author": "Kenney",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/city-kit-suburban",
+  "tags": [
+   "ciudad",
+   "city",
+   "casas",
+   "houses",
+   "suburbio",
+   "3D"
+  ]
+ },
+ {
+  "title": "Kenney City Kit (Roads)",
+  "author": "Kenney",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/city-kit-roads",
+  "tags": [
+   "carreteras",
+   "roads",
+   "ciudad",
+   "city",
+   "calles",
+   "streets",
+   "3D"
+  ]
+ },
+ {
+  "title": "Kenney Castle Kit",
+  "author": "Kenney",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/castle-kit",
+  "tags": [
+   "castillo",
+   "castle",
+   "medieval",
+   "muros",
+   "walls",
+   "torres",
+   "towers",
+   "3D"
+  ]
+ },
+ {
+  "title": "Kenney Platformer Kit",
+  "author": "Kenney",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/platformer-kit",
+  "tags": [
+   "plataformas",
+   "platformer",
    "3D",
-   "ciencia ficcion"
+   "niveles",
+   "level",
+   "monedas",
+   "coins"
+  ]
+ },
+ {
+  "title": "Kenney Racing Kit",
+  "author": "Kenney",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/racing-kit",
+  "tags": [
+   "carreras",
+   "racing",
+   "coches",
+   "cars",
+   "circuito",
+   "track",
+   "3D"
+  ]
+ },
+ {
+  "title": "Kenney Survival Kit",
+  "author": "Kenney",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/survival-kit",
+  "tags": [
+   "supervivencia",
+   "survival",
+   "herramientas",
+   "tools",
+   "tienda",
+   "tent",
+   "3D"
+  ]
+ },
+ {
+  "title": "Kenney Blocky Characters",
+  "author": "Kenney",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/blocky-characters",
+  "tags": [
+   "personajes",
+   "characters",
+   "cubos",
+   "blocky",
+   "low poly",
+   "3D"
+  ]
+ },
+ {
+  "title": "Kenney Mini Dungeon",
+  "author": "Kenney",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/mini-dungeon",
+  "tags": [
+   "mazmorra",
+   "dungeon",
+   "cofre",
+   "chest",
+   "low poly",
+   "3D"
+  ]
+ },
+ {
+  "title": "Kenney Graveyard Kit",
+  "author": "Kenney",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/graveyard-kit",
+  "tags": [
+   "cementerio",
+   "graveyard",
+   "terror",
+   "horror",
+   "tumbas",
+   "3D"
+  ]
+ },
+ {
+  "title": "Kenney Food Kit",
+  "author": "Kenney",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/food-kit",
+  "tags": [
+   "comida",
+   "food",
+   "cocina",
+   "kitchen",
+   "frutas",
+   "fruit",
+   "3D"
+  ]
+ },
+ {
+  "title": "Kenney Pirate Kit",
+  "author": "Kenney",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/pirate-kit",
+  "tags": [
+   "piratas",
+   "pirates",
+   "barco",
+   "ship",
+   "isla",
+   "island",
+   "cofre",
+   "chest",
+   "3D"
+  ]
+ },
+ {
+  "title": "Kenney Fantasy Town Kit",
+  "author": "Kenney",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/fantasy-town-kit",
+  "tags": [
+   "fantasia",
+   "fantasy",
+   "pueblo",
+   "town",
+   "casas",
+   "houses",
+   "medieval",
+   "3D"
   ]
  },
  {
@@ -148,8 +731,12 @@
   "url": "https://quaternius.com/packs/ultimatestylizednature.html",
   "tags": [
    "arboles",
+   "trees",
    "naturaleza",
+   "nature",
    "estilizado",
+   "stylized",
+   "low poly",
    "3D"
   ]
  },
@@ -162,9 +749,273 @@
   "url": "https://quaternius.com/packs/ultimatespacekit.html",
   "tags": [
    "espacio",
+   "space",
    "naves",
-   "3D",
-   "low poly"
+   "spaceship",
+   "low poly",
+   "3D"
+  ]
+ },
+ {
+  "title": "Quaternius (todos los packs)",
+  "author": "Quaternius",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://quaternius.com/packs.html",
+  "tags": [
+   "personajes",
+   "characters",
+   "animales",
+   "animals",
+   "edificios",
+   "buildings",
+   "armas",
+   "weapons",
+   "fantasia",
+   "fantasy",
+   "low poly",
+   "3D"
+  ]
+ },
+ {
+  "title": "KayKit Adventurers (personajes)",
+  "author": "Kay Lousberg",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kaylousberg.itch.io/kaykit-adventurers",
+  "tags": [
+   "personajes",
+   "characters",
+   "aventureros",
+   "adventurers",
+   "caballero",
+   "knight",
+   "mago",
+   "wizard",
+   "animaciones",
+   "animations",
+   "low poly",
+   "3D"
+  ]
+ },
+ {
+  "title": "KayKit Skeletons (enemigos)",
+  "author": "Kay Lousberg",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kaylousberg.itch.io/kaykit-skeletons",
+  "tags": [
+   "esqueletos",
+   "skeletons",
+   "enemigos",
+   "enemies",
+   "monstruos",
+   "monsters",
+   "animaciones",
+   "animations",
+   "low poly",
+   "3D"
+  ]
+ },
+ {
+  "title": "KayKit Dungeon Remastered",
+  "author": "Kay Lousberg",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kaylousberg.itch.io/kaykit-dungeon-remastered",
+  "tags": [
+   "mazmorra",
+   "dungeon",
+   "cofre",
+   "chest",
+   "antorchas",
+   "torches",
+   "muros",
+   "walls",
+   "low poly",
+   "3D"
+  ]
+ },
+ {
+  "title": "KayKit Medieval Builder Pack",
+  "author": "Kay Lousberg",
+  "type": "model3d",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kaylousberg.itch.io/kaykit-medieval-builder-pack",
+  "tags": [
+   "medieval",
+   "casas",
+   "houses",
+   "castillo",
+   "castle",
+   "ciudad",
+   "city",
+   "low poly",
+   "3D"
+  ]
+ },
+ {
+  "title": "Kenney Interface Sounds",
+  "author": "Kenney",
+  "type": "audio",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/interface-sounds",
+  "tags": [
+   "interfaz",
+   "ui",
+   "clic",
+   "click",
+   "botones",
+   "buttons",
+   "efectos",
+   "effects",
+   "sonidos",
+   "sounds"
+  ]
+ },
+ {
+  "title": "Kenney Impact Sounds",
+  "author": "Kenney",
+  "type": "audio",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/impact-sounds",
+  "tags": [
+   "impactos",
+   "impact",
+   "golpes",
+   "hits",
+   "efectos",
+   "effects",
+   "sonidos",
+   "sounds"
+  ]
+ },
+ {
+  "title": "Kenney Digital Audio",
+  "author": "Kenney",
+  "type": "audio",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/digital-audio",
+  "tags": [
+   "retro",
+   "laser",
+   "efectos",
+   "effects",
+   "sonidos",
+   "sounds",
+   "8 bit"
+  ]
+ },
+ {
+  "title": "Kenney RPG Audio",
+  "author": "Kenney",
+  "type": "audio",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/rpg-audio",
+  "tags": [
+   "rpg",
+   "espada",
+   "sword",
+   "pasos",
+   "footsteps",
+   "monedas",
+   "coins",
+   "efectos",
+   "effects",
+   "sonidos",
+   "sounds"
+  ]
+ },
+ {
+  "title": "Kenney Sci-fi Sounds",
+  "author": "Kenney",
+  "type": "audio",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/sci-fi-sounds",
+  "tags": [
+   "ciencia ficcion",
+   "sci-fi",
+   "naves",
+   "spaceship",
+   "laser",
+   "efectos",
+   "effects",
+   "sonidos",
+   "sounds"
+  ]
+ },
+ {
+  "title": "Kenney Music Jingles",
+  "author": "Kenney",
+  "type": "audio",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/music-jingles",
+  "tags": [
+   "musica",
+   "music",
+   "jingle",
+   "victoria",
+   "victory",
+   "derrota",
+   "defeat",
+   "fanfarria",
+   "fanfare"
+  ]
+ },
+ {
+  "title": "Kenney Casino Audio",
+  "author": "Kenney",
+  "type": "audio",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "url": "https://kenney.nl/assets/casino-audio",
+  "tags": [
+   "casino",
+   "fichas",
+   "chips",
+   "cartas",
+   "cards",
+   "dados",
+   "dice",
+   "sonidos",
+   "sounds"
+  ]
+ },
+ {
+  "title": "Incompetech: música libre de Kevin MacLeod",
+  "author": "Kevin MacLeod",
+  "type": "audio",
+  "license": "CC BY 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://incompetech.com/music/royalty-free/",
+  "tags": [
+   "musica",
+   "music",
+   "epica",
+   "epic",
+   "tranquila",
+   "calm",
+   "batalla",
+   "battle",
+   "terror",
+   "horror",
+   "aventura",
+   "adventure",
+   "misterio",
+   "mystery",
+   "fondo",
+   "background"
   ]
  }
 ]

@@ -31,5 +31,7 @@ export interface Adapter {
   name: string;
   types: AssetType[];
   requiresKey: string | null;
+  /** Si es true recibe la consulta tal cual (ya entiende español); si no, se traduce al inglés. */
+  bilingual?: boolean;
   search(query: string, type: AssetType, signal: AbortSignal): Promise<Asset[]>;
 }

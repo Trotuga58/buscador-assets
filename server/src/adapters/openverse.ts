@@ -8,14 +8,13 @@ interface OvItem {
 }
 
 const ENDPOINT: Partial<Record<AssetType, { path: string; as: AssetType }>> = {
-  sprite: { path: 'images', as: 'sprite' },
   audio: { path: 'audio', as: 'audio' },
 };
 
 export function createOpenverseAdapter(fetchFn: FetchFn = fetch): Adapter {
   return {
     name: 'Openverse',
-    types: ['sprite', 'audio'],
+    types: ['audio'],
     requiresKey: null,
     async search(query, type, signal) {
       const ep = ENDPOINT[type];

@@ -1,5 +1,6 @@
 import type { Adapter, Asset, AssetType, SearchResponse, SourceStatus } from '../../shared/types.ts';
 import type { Cache } from './cache.ts';
+import { toEnglish } from './translate.ts';
 
 export interface SearchOptions {
   cache: Cache;
@@ -39,7 +40,7 @@ async function searchOne(adapter: Adapter, query: string, type: AssetType, o: Se
   const key = `${adapter.name}|${type}|${query.trim().toLowerCase()}`;
   const hit = await o.cache.get<Asset[]>(key);
   if (hit) return hit;
-  const found = (await withTimeout((signal) => adapter.search(query.trim(), type, signal), o.timeoutMs)).filter(isAllowed);
+  const found = (await withTimeout((signal) => adapter.search(adapter.bilingual ? query.trim() : toEnglish(query), type, signal), o.timeoutMs)).filter(isAllowed);
   await o.cache.set(key, found);
   return found;
 }

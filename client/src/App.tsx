@@ -3,6 +3,7 @@ import type { Asset, AssetType, SearchResponse } from '../../shared/types.ts';
 import { addFavorite, getSettings, listFavorites, removeFavorite, saveSettings, search } from './api.ts';
 import { TABS } from './logic.ts';
 import { ResultGrid } from './components/ResultGrid.tsx';
+import { ExternalSearch } from './components/ExternalSearch.tsx';
 import { SettingsPanel } from './components/SettingsPanel.tsx';
 import { Favorites } from './components/Favorites.tsx';
 import { SourceStatusBar } from './components/SourceStatusBar.tsx';
@@ -70,6 +71,7 @@ export function App() {
       {loading && <p role="status">Buscando…</p>}
       {error && <p role="alert">{error}</p>}
       {data && <SourceStatusBar sources={data.sources} />}
+      {data && <ExternalSearch query={query} type={type} />}
       {data && <ResultGrid results={data.results} searched favoriteIds={new Set(favorites.map((f) => f.id))} onToggleFavorite={toggleFavorite} />}
     </main>
   );

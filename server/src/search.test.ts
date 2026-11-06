@@ -115,3 +115,14 @@ test('se descartan URLs que no son http(s) (javascript:, data:)', async () => {
   const r = await runSearch([a], 'q', 'sprite', await opts());
   assert.deepEqual(r.results.map((x) => x.id), ['ok']);
 });
+
+test('los adaptadores reciben la consulta traducida, salvo los bilingües', async () => {
+  const seen: Record<string, string> = {};
+  const mk = (name: string, bilingual: boolean) => ({
+    name, types: ['sprite'] as AssetType[], requiresKey: null, bilingual,
+    async search(q: string) { seen[name] = q; return []; },
+  }) as Adapter;
+  await runSearch([mk('api', false), mk('curada', true)], 'Espada épica', 'sprite', await opts());
+  assert.equal(seen.api, 'sword epic');
+  assert.equal(seen.curada, 'Espada épica');
+});

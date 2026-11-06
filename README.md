@@ -28,7 +28,7 @@ npm run dev:server       # http://127.0.0.1:3001
 npm run dev:client       # en otra terminal; abre la dirección que imprime Vite
 ```
 
-Sin claves funciona Openverse (2D y audio) y la lista curada. Las demás fuentes aparecen como "sin configurar" hasta que añadas su clave.
+Sin claves funciona la lista curada (2D, 3D y audio de juegos) y Openverse (solo audio). Las demás fuentes aparecen como "sin configurar" hasta que añadas su clave.
 
 ## Claves gratuitas (los enlaces pueden haber cambiado)
 
@@ -36,7 +36,6 @@ Sin claves funciona Openverse (2D y audio) y la lista curada. Las demás fuentes
 |---|---|---|
 | `FREESOUND_API_KEY` | Freesound | https://freesound.org/apiv2/apply |
 | `POLYPIZZA_API_KEY` | Poly Pizza | https://poly.pizza (ajustes de cuenta, sección API) |
-| `SKETCHFAB_API_KEY` | Sketchfab | https://sketchfab.com/settings/password (token de API) |
 | `GOOGLE_FONTS_API_KEY` | Google Fonts | https://developers.google.com/fonts/docs/developer_api |
 
 ## Comprobar que todo funciona

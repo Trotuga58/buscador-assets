@@ -18,11 +18,12 @@ export function createCuratedAdapter(data: CuratedEntry[]): Adapter {
     name: 'Lista curada',
     types: ['sprite', 'model3d', 'audio', 'code'],
     requiresKey: null,
+    bilingual: true,
     async search(query, type) {
       const words = fold(query).split(/\s+/).filter(Boolean);
       const out: Asset[] = [];
       for (const { e, license, hay } of entries) {
-        if (e.type !== type || !words.every((w) => hay.includes(w))) continue;
+        if (e.type !== type || !words.every((w) => (' ' + hay).includes(' ' + w))) continue;
         out.push(makeAsset({
           id: fold(e.title).replace(/[^a-z0-9]+/g, '-'), type: e.type, title: e.title, author: e.author, license,
           licenseUrl: e.licenseUrl, sourceName: 'Lista curada', sourceUrl: e.url, downloadUrl: null,
