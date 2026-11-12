@@ -1,6 +1,7 @@
 # Buscador de assets libres: diseño
 
-Estado: pendiente de aprobación del usuario (2026-11-06).
+> Documento de diseño inicial (2026-11-06), conservado como registro de las decisiones.
+> Después el alcance cambió: la app muestra solo CC0 y pasó a ser una app de escritorio con Electron y un conector MCP.
 
 ## 1. Intención y porqué
 Una web para uso personal del usuario donde escribe lo que necesita para sus proyectos (su app de estudio, sus vídeos animados, juegos) y obtiene en un solo sitio resultados de varias fuentes públicas: modelos 3D, sprites 2D y UI, música y efectos de sonido, fuentes, y efectos visuales, shaders y código. Evita tener que abrir diez webs distintas y comprobar la licencia de cada una.
