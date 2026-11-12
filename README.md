@@ -11,7 +11,7 @@ mostrando únicamente contenido **CC0** (dominio público): se puede usar en pro
 
 La hice porque al crear juegos y vídeos perdía mucho tiempo abriendo diez webs distintas y comprobando la licencia de cada asset.
 
-<!-- Añade aquí una captura: ![Captura del buscador](docs/captura.png) -->
+![Captura del buscador](docs/captura.png)
 
 ## Qué hace
 
