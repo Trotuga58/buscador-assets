@@ -36,7 +36,8 @@
   "main": "electron/main.cjs",
   "version": "1.0.0",
   "description": "Buscador de assets libres",
-  "author": "Jon",
+  "author": "Jon Burgos",
+  "license": "MIT",
   "build": {
     "appId": "com.jon.buscador-assets",
     "productName": "Buscador de assets",
